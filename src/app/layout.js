@@ -1,11 +1,13 @@
+import Footer from '@/components/footer/Footer'
 import './globals.css'
 import { Inter } from 'next/font/google'
+import Navbar from '@/components/navbar/Navbar'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Blog App',
-  description: 'The best blog app!',
+  title: 'Rishav Sharma Blog',
+  description: 'Learning and Sharing',
 }
 
 export default function RootLayout({ children }) {
@@ -14,7 +16,9 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <div className="container">
           <div className="wrapper">
+            <Navbar />
             {children}
+            <Footer />
           </div>
         </div>
       </body>
