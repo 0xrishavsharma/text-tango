@@ -38,7 +38,7 @@ so that's why we'll handle bg color in the layout.js file*/
     /*Adding these paddings because as we shrink the width of screen for small screens the text is gonna stick to the edges and we don't want that to happen*/
     padding-left: 80px;
     padding-right: 80px;
-    background-color: purple;
+    /* background-color: purple; */
 }
 
 @media screen and (max-width: 1536px) {
