@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
     --bg: white;
     --textColor: black;
@@ -24,6 +28,13 @@ a {
 
 /* we are not giving background color here because we'll be toggling theme and it is going to get applied in the container
 so that's why we'll handle bg color in the layout.js file*/
+
+.dark {
+    --bg: #0f172a;
+    --textColor: #ddd;
+    --softBg: #1f273a;
+    --softTextColor: #a6a6a6;
+}
 
 .container {
     min-height: 100vh;
