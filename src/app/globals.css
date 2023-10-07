@@ -2,11 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-    --bg: white;
-    --textColor: black;
-    --softBg: #f0f0f0;
-    --softTextColor: #626262;
+@layer base {
+    :root {
+        --bg: white;
+        --textColor: black;
+        --softBg: #f0f0f0;
+        --softTextColor: #626262;
+    }
 }
 
 * {
