@@ -26,7 +26,17 @@ const Navbar = () => {
         <Link className={styles.link} href="/about">About</Link>
         <AuthLinks />
         <RxHamburgerMenu onClick={() => setOpen(true)} className={`${open ? "hidden" : "block"} sm:hidden`} />
-        <AiOutlineClose onClick={() => setOpen(false)} className={`${!open && "hidden"}`} />
+        {open &&
+          <>
+            <div className='relative flex items-center h-screen min-h-screen'>
+              <div className="absolute flex flex-col w-full gap-20 left-2">
+                <Link className="" href="/">Home</Link>
+                <Link className="" href="/contact">Contact</Link>
+                <Link className="" href="/about">About</Link>
+              </div>
+            </div>
+          </>
+        }
       </div>
     </div>
   )
