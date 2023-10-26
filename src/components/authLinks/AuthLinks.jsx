@@ -6,45 +6,66 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import { cn } from "@/utils";
 
 const AuthLinks = () => {
-  const [open, setOpen] = useState(false)
-  const status = "notauthenticated"
-  return (
-    <>
-      {
-        status === "notauthenticated" ?
-          (<Link href="/login" className="hidden sm:block">Login</Link>) :
-          (<>
-            <Link href="/write" className="">Write</Link>
-            <span className={styles.link}>Logout</span>
-          </>)
-      }
-      {/* <RxHamburgerMenu onClick={() => setOpen(!open)} className={`${open ? "hidden" : "block"} sm:hidden cursor-pointer`} /> */}
-      <RxHamburgerMenu onClick={() => setOpen(!open)} />
-
-      {open &&
+    const [open, setOpen] = useState(false);
+    const status = "notauthenticated";
+    return (
         <>
-          {/* <AiOutlineCloseCircle style={{ width: "1.8rem" }} onClick={() => setOpen(false)} className={cn("z-10 h-5 absolute right-5 top-5 cursor-pointer", !open ? "hidden" : "block")} /> */}
-          <div className='absolute top-[100px] right-0 items-center justify-center w-screen h-[calc(100vh_-_100px)] bg-[var(--bg)]'>
-            {/* <div className={cn('items-center w-screen h-screen pl-8 transition-all bg-red-100 shadow-sm backdrop:blur-3xl left-10', */}
-            {/* open ? "absolute top-0 bottom-0 -right-[1000vw] transition-all" : "hidden")}> */}
-            <div className="relative flex flex-col items-center w-full h-full gap-20 pt-36">
-              <Link className="text-3xl" href="/">Home</Link>
-              <Link className="text-3xl" href="/contact">Contact</Link>
-              <Link className="text-3xl" href="/about">About</Link>
-              {
-                status === "notauthenticated" ?
-                  (<Link className="text-3xl" href="/login">Login</Link>) :
-                  (<>
-                    <Link className="text-3xl" href="/write">Write</Link>
-                    <span className={cn(styles.link, "text-4xl")}>Logout</span>
-                  </>)
-              }
-            </div>
-          </div>
-        </>
-      }
-    </>
-  )
-}
+            {status === "notauthenticated" ? (
+                <Link href='/login' className='hidden sm:block'>
+                    Login
+                </Link>
+            ) : (
+                <>
+                    <Link href='/write' className=''>
+                        Write
+                    </Link>
+                    <span className={styles.link}>Logout</span>
+                </>
+            )}
+            {/* <RxHamburgerMenu onClick={() => setOpen(!open)} className={`${open ? "hidden" : "block"} sm:hidden cursor-pointer`} /> */}
+            <RxHamburgerMenu
+                className='cursor-pointer md:hidden'
+                onClick={() => setOpen(!open)}
+            />
 
-export default AuthLinks
+            {open && (
+                <>
+                    {/* <AiOutlineCloseCircle style={{ width: "1.8rem" }} onClick={() => setOpen(false)} className={cn("z-10 h-5 absolute right-5 top-5 cursor-pointer", !open ? "hidden" : "block")} /> */}
+                    <div className='absolute top-[100px] right-0 items-center justify-center w-screen h-[calc(100vh_-_100px)] bg-[var(--bg)]'>
+                        {/* <div className={cn('items-center w-screen h-screen pl-8 transition-all bg-red-100 shadow-sm backdrop:blur-3xl left-10', */}
+                        {/* open ? "absolute top-0 bottom-0 -right-[1000vw] transition-all" : "hidden")}> */}
+                        <div className='relative flex flex-col items-center w-full h-full gap-20 pt-36'>
+                            <Link className='text-3xl' href='/'>
+                                Home
+                            </Link>
+                            <Link className='text-3xl' href='/contact'>
+                                Contact
+                            </Link>
+                            <Link className='text-3xl' href='/about'>
+                                About
+                            </Link>
+                            {status === "notauthenticated" ? (
+                                <Link className='text-3xl' href='/login'>
+                                    Login
+                                </Link>
+                            ) : (
+                                <>
+                                    <Link className='text-3xl' href='/write'>
+                                        Write
+                                    </Link>
+                                    <span
+                                        className={cn(styles.link, "text-4xl")}
+                                    >
+                                        Logout
+                                    </span>
+                                </>
+                            )}
+                        </div>
+                    </div>
+                </>
+            )}
+        </>
+    );
+};
+
+export default AuthLinks;

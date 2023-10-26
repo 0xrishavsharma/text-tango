@@ -1,0 +1,4 @@
+.categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(120px, 100%), 1fr));
+}
