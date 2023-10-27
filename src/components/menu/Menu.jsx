@@ -1,10 +1,9 @@
-import React from 'react'
-import styles from "./menu.module.css"
+import React from "react";
+import styles from "./menu.module.css";
+import { cn } from "@/utils";
 
-const Menu = () => {
-  return (
-    <div>Menu</div>
-  )
-}
+const Menu = ({ className }) => {
+  return <div className={cn(styles.container, className)}>Menu</div>;
+};
 
-export default Menu
+export default Menu;

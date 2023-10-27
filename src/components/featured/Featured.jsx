@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./featured.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
 const Featured = () => {
     return (
@@ -16,7 +17,7 @@ const Featured = () => {
                 <div className='relative flex-1 h-64  md:h-96'>
                     <Image
                         src='/p1.jpeg'
-                        className='relative left-0 right-0 top-0 bottom-0 object-cover'
+                        className='absolute left-0 right-0 top-0 bottom-0 object-cover'
                         fill
                         alt=''
                     />
@@ -32,9 +33,9 @@ const Featured = () => {
                         dolor sit amet consectetur adipisicing elit. Odit,
                         aspernatur!
                     </p>
-                    <button className='py-2 px-3 rounded text-xs w-max text-[var(--bg)] bg-[var(--textColor)]'>
+                    <Link href="/" className='py-2 px-3 rounded text-xs w-max text-[var(--bg)] bg-[var(--textColor)]'>
                         Read More
-                    </button>
+                    </Link>
                 </div>
             </div>
         </div>
