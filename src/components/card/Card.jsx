@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Card = () => {
   return (
-    <div className="flex flex-col justify-between gap-8 md:flex-row">
+    <div className="flex flex-col justify-between gap-12 md:flex-row">
       <div className="relative flex-1">
         <Image className="flex-1 object-cover" src="/p1.jpeg" alt="" fill />
       </div>
@@ -15,13 +15,13 @@ const Card = () => {
         <h2 className="text-2xl font-bold">
           Lorem ipsum dolor sit amet consectetur adipisicing elit.
         </h2>
-        <p className="text-sm text-[var(--softTextColor)]">
+        <p className=" text-[var(--softTextColor)]">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae eos
           beatae enim? Voluptatem architecto enim error. Tempora modi voluptatum
           quo aperiam, ipsa ratione placeat commodi atque dignissimos eius, vel
           inventore.
         </p>
-        <button className="relative w-max after:absolute after:-bottom-[2px] after:left-0 after:h-[1.5px] after:w-full after:bg-[var(--textColor)]">
+        <button className="relative w-max text-sm after:absolute after:-bottom-[2px] after:left-0 after:h-[1.5px] after:w-full after:bg-[var(--textColor)]">
           Read More
         </button>
       </div>
