@@ -14,7 +14,7 @@ export default function Home() {
     <CategoryList />
     <div className={cn(styles.content, "flex gap-12")}>
       <CardList className="flex-[3]"/>
-      <Menu className="flex-1"/>
+      <Menu className="flex-1 hidden lg:block"/>
     </div>
   </div>;
 }

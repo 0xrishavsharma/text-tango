@@ -10,7 +10,7 @@ import MenuPosts from "../menuPosts/MenuPosts";
 
 const Menu = ({ className }) => {
   return (
-    <div className={cn(styles.container, className)}>
+    <div className={cn(styles.container, className, "hidden lg:")}>
       <MenuPosts type="hot" />
       <MenuCategories />
       <MenuPosts type="editors" />

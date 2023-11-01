@@ -3,7 +3,7 @@ import Image from "next/image";
 const Card = () => {
   return (
     <div className="flex flex-col justify-between gap-12 md:flex-row">
-      <div className="relative flex-1">
+      <div className="relative hidden flex-1  xl:block">
         <Image className="flex-1 object-cover" src="/p1.jpeg" alt="" fill />
       </div>
       <div className="flex flex-1 flex-col justify-between gap-3">
@@ -21,7 +21,7 @@ const Card = () => {
           quo aperiam, ipsa ratione placeat commodi atque dignissimos eius, vel
           inventore.
         </p>
-        <button className="relative w-max text-sm after:absolute after:-bottom-[2px] after:left-0 after:h-[1.5px] after:w-full after:bg-[var(--textColor)]">
+        <button className="relative w-max text-sm font-semibold after:absolute after:-bottom-[2px] after:left-0 after:h-[1.7px] after:w-full after:bg-red-500">
           Read More
         </button>
       </div>

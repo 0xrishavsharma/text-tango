@@ -5,8 +5,8 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <div className="flex">
-      <div className="flex-1 flex flex-col gap-4">
+    <div className="mt-12 flex flex-col gap-10 lg:items-center justify-between py-5 text-[var(--softTextColor)] md:flex-row">
+      <div className="flex flex-1 flex-col gap-4">
         <div className="flex items-center gap-4">
           <div className="w-max rounded-full border-[2px] border-gray-200">
             <Image
@@ -17,9 +17,9 @@ const Footer = () => {
               height={40}
             />
           </div>
-          <h1 className="text-2xl font-bold">Rishav Sharma</h1>
+          <h1 className="text-xl md:text-2xl font-bold">Rishav Sharma</h1>
         </div>
-        <span className="text-sm leading-[1.1] text-[var(--softTextColor)]">
+        <span className="text-sm font-light leading-[1.1] text-[var(--softTextColor)]">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
           at quidem recusandae consequuntur iure. In soluta reprehenderit facere
           illo rem suscipit cum numquam, tempore doloremque similique eius ut
@@ -42,11 +42,48 @@ const Footer = () => {
           <Image src="/youtube.png" alt="youtube logo" width={18} height={18} />
         </div>
       </div>
-      <div className="flex-1">
-        <div>
-          <ul>
-            <Link href={"/"}>Home</Link>
-          </ul>
+      <div className="flex flex-col sm:flex-row flex-1 gap-8 sm:gap-12 py-5 text-[--var(--softTextColor)] justify-between lg:justify-end lg:gap-24">
+        <div className="flex flex-col gap-3">
+          <span className="font-bold">Links</span>
+          <Link className="text-sm" href={"/"}>
+            Home
+          </Link>
+          <Link className="text-sm" href={"/"}>
+            Blog
+          </Link>
+          <Link className="text-sm" href={"/"}>
+            About
+          </Link>
+          <Link className="text-sm" href={"/"}>
+            Contact
+          </Link>
+        </div>
+        <div className="flex flex-col gap-3">
+          <span className="font-bold">Tags</span>
+          <Link className="text-sm" href={"/"}>
+            Style
+          </Link>
+          <Link className="text-sm" href={"/"}>
+            Coding
+          </Link>
+          <Link className="text-sm" href={"/"}>
+            Fashion
+          </Link>
+          <Link className="text-sm" href={"/"}>
+            Travel
+          </Link>
+        </div>
+        <div className="flex flex-col gap-3">
+          <span className="font-bold">Social</span>
+          <Link className="text-sm" href={"/"}>
+            LinkedIn
+          </Link>
+          <Link className="text-sm" href={"/"}>
+            Twitter
+          </Link>
+          <Link className="text-sm" href={"/"}>
+            Instagram
+          </Link>
         </div>
       </div>
     </div>

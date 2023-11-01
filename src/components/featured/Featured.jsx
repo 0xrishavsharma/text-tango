@@ -12,12 +12,12 @@ const Featured = () => {
           Dive into my world and pickup useful nuggets.
         </span>
       </h1>
-      <div className="space-between mt-12 flex flex-col gap-8 sm:flex-row">
+      <div className="space-between mt-12 flex flex-col gap-8 ms:flex-row">
         {/* <div className='flex gap-8 mt-12 space-between'> */}
-        <div className="relative h-64 flex-1  md:h-96">
+        <div className="relative h-64 w-64 flex-1 md:w-96 md:h-96">
           <Image
             src="/p1.jpeg"
-            className="absolute bottom-0 left-0 right-0 top-0 object-cover"
+            className="absolute bottom-0 left-0 right-0 top-0 object-cover h-full w-full"
             fill
             alt=""
           />
