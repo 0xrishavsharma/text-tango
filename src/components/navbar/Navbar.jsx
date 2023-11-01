@@ -18,7 +18,7 @@ const Navbar = () => {
         <Image src="/tiktok.png" alt="linkedin logo" width={24} height={24} />
         <Image src="/youtube.png" alt="youtube logo" width={24} height={24} />
       </div>
-      <div className={styles.logo}>Rishav Sharma</div>
+      <div className="flex-1 text-center text-3xl font-bold">Rishav Sharma</div>
       <div className={`${styles.links} justify-end`}>
         <ThemeToggle />
         <Link className={styles.link} href="/">Home</Link>

@@ -9,11 +9,11 @@ const CategoryList = () => {
     <div className="flex flex-col">
       <h1 className="my-12 text-2xl font-bold">Popular Categories</h1>
       {/* <div className="flex w-full flex-wrap justify-between gap-3"> */}
-      <div className={cn(styles.categories, " gap-3")}>
+      <div className={cn(styles.categories, "gap-3 text-[var(--textColor)]")}>
         <Link
           href="/blog?cat=style"
           //   className=" flex h-16 w-full items-center justify-center gap-3 rounded-lg bg-[#57c4ff31] capitalize sm:w-[25%] lg:w-[20%] xl:w-[15%]"
-          className="flex h-16 w-full items-center justify-center gap-3 rounded-lg bg-[#57c4ff31] capitalize"
+          className="flex h-16 w-full items-center justify-center gap-3 rounded-lg bg-blue-400/50 capitalize"
         >
           <Image
             className="h-6 w-6 rounded-full"
@@ -27,7 +27,7 @@ const CategoryList = () => {
         <Link
           href="/blog?cat=style"
           //   className=" flex h-16 w-full items-center justify-center gap-3 rounded-lg bg-[#57c4ff31] capitalize sm:w-[25%] lg:w-[20%] xl:w-[15%]"
-          className="flex h-16 w-full items-center justify-center gap-3 rounded-lg bg-[#ff57fc31] capitalize"
+          className="flex h-16 w-full items-center justify-center gap-3 rounded-lg bg-pink-400/50 capitalize"
         >
           <Image
             className="h-6 w-6 rounded-full"
@@ -41,7 +41,7 @@ const CategoryList = () => {
         <Link
           href="/blog?cat=style"
           //   className=" flex h-16 w-full items-center justify-center gap-3 rounded-lg bg-[#57c4ff31] capitalize sm:w-[25%] lg:w-[20%] xl:w-[15%]"
-          className="flex h-16 w-full items-center justify-center gap-3 rounded-lg bg-[#5dff5731] capitalize"
+          className="flex h-16 w-full items-center justify-center gap-3 rounded-lg bg-green-400/50 capitalize"
         >
           <Image
             className="h-6 w-6 rounded-full"
@@ -55,7 +55,7 @@ const CategoryList = () => {
         <Link
           href="/blog?cat=style"
           //   className=" flex h-16 w-full items-center justify-center gap-3 rounded-lg bg-[#57c4ff31] capitalize sm:w-[25%] lg:w-[20%] xl:w-[15%]"
-          className="flex h-16 w-full items-center justify-center gap-3 rounded-lg bg-[#ff577b31] capitalize"
+          className="flex h-16 w-full items-center justify-center gap-3 rounded-lg bg-red-400/50 capitalize"
         >
           <Image
             className="h-6 w-6 rounded-full"
@@ -69,7 +69,7 @@ const CategoryList = () => {
         <Link
           href="/blog?cat=style"
           //   className=" flex h-16 w-full items-center justify-center gap-3 rounded-lg bg-[#57c4ff31] capitalize sm:w-[25%] lg:w-[20%] xl:w-[15%]"
-          className="flex h-16 w-full items-center justify-center gap-3 rounded-lg bg-[#ff9d5731] capitalize"
+          className="flex h-16 w-full items-center justify-center gap-3 rounded-lg bg-orange-400/50 capitalize"
         >
           <Image
             className="h-6 w-6 rounded-full"
@@ -83,7 +83,7 @@ const CategoryList = () => {
         <Link
           href="/blog?cat=style"
           //   className=" flex h-16 w-full items-center justify-center gap-3 rounded-lg bg-[#57c4ff31] capitalize sm:w-[25%] lg:w-[20%] xl:w-[15%]"
-          className="flex h-16 w-full items-center justify-center gap-3 rounded-lg bg-[#a357ff31] capitalize"
+          className="flex h-16 w-full items-center justify-center gap-3 rounded-lg bg-purple-400/50 capitalize"
         >
           <Image
             className="h-6 w-6 rounded-full"
