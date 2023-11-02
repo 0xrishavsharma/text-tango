@@ -1,67 +1,67 @@
 .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+  position: relative;
 }
 
 .social {
-    display: flex;
-    gap: 10px;
-    flex: 1;
+  display: flex;
+  gap: 10px;
+  flex: 1;
 }
 
-
 .links {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    flex: 1;
-    font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+  font-size: 18px;
 }
 
 @media screen and (max-width: 1280px) {
-    .logo {
-        font-size: 28px;
-    }
-    .links {
-        font-size: 16px;
-        gap: 15px;
-    }
+  .logo {
+    font-size: 28px;
+  }
+  .links {
+    font-size: 16px;
+    gap: 15px;
+  }
 }
 @media screen and (max-width: 1024px) {
-    .social {
-        display: none;
-    }
-    .logo {
-        text-align: left;
-    }
+  .social {
+    display: none;
+  }
+  .logo {
+    text-align: left;
+  }
 }
 @media screen and (max-width: 768px) {
-    .logo {
-        font-size: 24px;
-    }
+  .logo {
+    font-size: 24px;
+  }
 }
 @media screen and (max-width: 640px) {
-    .links {
-        justify-content: flex-end;
-    }
-    .link {
-        display: none;
-    }
+  .links {
+    justify-content: flex-end;
+  }
+  .link {
+    display: none;
+  }
 }
-@media screen and (max-width: 440px) {
-    .logo {
-        font-size: 20px;
-    }
+@media screen and (max-width: 484px) {
+  .logo {
+    font-size: 20px;
+  }
 }
 @media screen and (max-width: 380px) {
-    .logo {
-        font-size: 18px;
-    }
+  .logo {
+    font-size: 18px;
+  }
 }
 @media screen and (max-width: 348px) {
-    .logo {
-        font-size: 16px;
-    }
+  .logo {
+    font-size: 16px;
+  }
 }
