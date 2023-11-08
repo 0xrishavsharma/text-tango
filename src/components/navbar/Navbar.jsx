@@ -15,7 +15,7 @@ const Navbar = () => {
       <div
         className={cn(
           styles.container,
-          "relative flex h-24 items-center justify-between",
+          "relative flex h-24 items-center justify-between gap-8",
         )}
       >
         <div className={cn(styles.social, "hidden flex-1 gap-3 lg:flex")}>
@@ -37,7 +37,7 @@ const Navbar = () => {
         <div
           className={cn(
             styles.logo,
-            "xxs:text-lg xs:text-xl sm:text-2xl md:text-3xl text-left lg:text-center",
+            "text-left xxs:text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-center",
           )}
         >
           Rishav Sharma

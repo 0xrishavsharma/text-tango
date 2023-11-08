@@ -7,7 +7,7 @@ import Card from "../card/Card";
 
 const CardList = ({ className }) => {
   return (
-    <div className={cn(styles.container, className)}>
+    <div className={cn(styles.container, className, "flex-[3]")}>
       <div className={cn("")}>
         <h1 className="my-12 text-2xl font-bold">Recent Posts</h1>
         <div className="flex flex-col gap-12">
