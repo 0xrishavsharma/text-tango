@@ -9,10 +9,17 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        bg: "var(--bg)",
+        textColor: "var(--textColor)",
+        softBg: "var(--softBg)",
+        softTextColor: "var(--softTextColor)",
+      },
+    },
     screens: {
-      xxs:"348px",
-      xs:"380px",
+      xxs: "348px",
+      xs: "380px",
       sm: "484px",
       ms: "640px",
       md: "768px",
