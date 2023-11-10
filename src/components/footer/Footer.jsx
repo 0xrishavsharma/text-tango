@@ -19,7 +19,7 @@ const Footer = () => {
           </div>
           <h1 className="text-xl md:text-2xl font-bold">Rishav Sharma</h1>
         </div>
-        <span className="text-sm font-light leading-[1.1] text-[var(--softTextColor)]">
+        <span className="text-sm xl:text-base font-light leading-[1.1] text-[var(--softTextColor)]">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
           at quidem recusandae consequuntur iure. In soluta reprehenderit facere
           illo rem suscipit cum numquam, tempore doloremque similique eius ut
@@ -45,43 +45,43 @@ const Footer = () => {
       <div className="flex flex-col sm:flex-row flex-1 gap-8 sm:gap-12 py-5 text-[--var(--softTextColor)] justify-between lg:justify-end lg:gap-24">
         <div className="flex flex-col gap-3">
           <span className="font-bold">Links</span>
-          <Link className="text-sm" href={"/"}>
+          <Link className="text-sm lg:text-base" href={"/"}>
             Home
           </Link>
-          <Link className="text-sm" href={"/"}>
+          <Link className="text-sm lg:text-base" href={"/"}>
             Blog
           </Link>
-          <Link className="text-sm" href={"/"}>
+          <Link className="text-sm lg:text-base" href={"/"}>
             About
           </Link>
-          <Link className="text-sm" href={"/"}>
+          <Link className="text-sm lg:text-base" href={"/"}>
             Contact
           </Link>
         </div>
         <div className="flex flex-col gap-3">
           <span className="font-bold">Tags</span>
-          <Link className="text-sm" href={"/"}>
+          <Link className="text-sm lg:text-base" href={"/"}>
             Style
           </Link>
-          <Link className="text-sm" href={"/"}>
+          <Link className="text-sm lg:text-base" href={"/"}>
             Coding
           </Link>
-          <Link className="text-sm" href={"/"}>
+          <Link className="text-sm lg:text-base" href={"/"}>
             Fashion
           </Link>
-          <Link className="text-sm" href={"/"}>
+          <Link className="text-sm lg:text-base" href={"/"}>
             Travel
           </Link>
         </div>
         <div className="flex flex-col gap-3">
           <span className="font-bold">Social</span>
-          <Link className="text-sm" href={"/"}>
+          <Link className="text-sm lg:text-base" href={"/"}>
             LinkedIn
           </Link>
-          <Link className="text-sm" href={"/"}>
+          <Link className="text-sm lg:text-base" href={"/"}>
             Twitter
           </Link>
-          <Link className="text-sm" href={"/"}>
+          <Link className="text-sm lg:text-base" href={"/"}>
             Instagram
           </Link>
         </div>

@@ -18,14 +18,14 @@ const SmallCard = ({ type, tag, tagColor, para, author, img, date }) => {
       <div className="flex flex-[4] flex-col gap-2">
         <span
           className={cn(
-            "w-max rounded-3xl px-2 py-[3px] text-xs text-white",
+            "w-max rounded-3xl px-2 py-[3px] text-xs lg:text-sm xl:text-base text-white",
             tagColor,
           )}
         >
           {tag}
         </span>
-        <p>{para}</p>
-        <div className="flex text-xs">
+        <p className="text-sm lg:text-lg">{para}</p>
+        <div className="flex text-xs lg:text-sm">
           <span className="font-semibold">{author}</span>
           <span className="mx-1 text-[var(--softTextColor)]">-</span>
           <span className="text-[var(--softTextColor)]"> {date}</span>

@@ -37,7 +37,7 @@ const Navbar = () => {
           href="/"
           className={cn(
             styles.logo,
-            "text-left font-semibold xxs:text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-center",
+            "text-left font-bold xxs:text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-center",
           )}
         >
           Rishav Sharma

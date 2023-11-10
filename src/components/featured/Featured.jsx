@@ -23,10 +23,10 @@ const Featured = () => {
           />
         </div>
         <div className="flex flex-1 flex-col justify-center gap-4">
-          <h1 className="text-3xl font-bold">
+          <h1 className=" text-3xl lg:text-4xl font-bold">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit
           </h1>
-          <p className=" font-light text-[var(--softTextColor)]">
+          <p className="text-base xl:text-lg font-light text-[var(--softTextColor)]">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo
             minus veritatis qui tempore perspiciatis, cumque saepe sint officiis
             aliquid pariatur. Lorem ipsum dolor sit amet consectetur adipisicing
@@ -34,7 +34,7 @@ const Featured = () => {
           </p>
           <Link
             href="/"
-            className="w-max rounded bg-[var(--textColor)] px-3 py-2 text-sm text-[var(--bg)]"
+            className="w-max rounded bg-[var(--textColor)] px-3 py-2 text-sm lg:text-base xl:text-lg text-[var(--bg)]"
           >
             Read More
           </Link>

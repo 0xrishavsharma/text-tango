@@ -9,12 +9,14 @@ import Menu from "@/components/menu/Menu";
 import { cn } from "@/utils";
 
 export default function Home() {
-  return <div className={styles.container}>
-    <Featured />
-    <CategoryList />
-    <div className={cn(styles.content, "flex gap-12")}>
-      <CardList/>
-      <Menu/>
+  return (
+    <div className={cn(styles.container, "")}>
+      <Featured />
+      <CategoryList />
+      <div className={cn(styles.content, "flex gap-12")}>
+        <CardList />
+        <Menu />
+      </div>
     </div>
-  </div>;
+  );
 }
