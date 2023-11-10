@@ -3,85 +3,102 @@
 @tailwind utilities;
 
 @layer base {
-    :root {
-        --bg: white;
-        --textColor: black;
-        --softBg: #f0f0f0;
-        --softTextColor: #626262;
-    }
+  :root {
+    --bg: white;
+    --textColor: black;
+    --softBg: #f0f0f0;
+    --softTextColor: #626262;
+  }
 }
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 body {
-    /*to prevent anything from overflowing*/
-    max-width: 100vw;
-    overflow-x: hidden;
+  /*to prevent anything from overflowing*/
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 a {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 /* we are not giving background color here because we'll be toggling theme and it is going to get applied in the container
 so that's why we'll handle bg color in the layout.js file*/
 
 .dark {
-    --bg: #0f172a;
-    --textColor: #ddd;
-    --softBg: #1f273a;
-    --softTextColor: #a6a6a6;
+  --bg: #0f172a;
+  --textColor: #ddd;
+  --softBg: #1f273a;
+  --softTextColor: #a6a6a6;
 }
 
 .container {
-    min-height: 100vh;
-    background-color: var(--bg);
-    color: var(--textColor);
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--textColor);
 }
 
 .wrapper {
-    max-width: 1536px;
-    margin-left: auto;
-    margin-right: auto;
-    /*Adding these paddings because as we shrink the width of screen for small screens the text is gonna stick to the edges and we don't want that to happen*/
-    padding-left: 80px;
-    padding-right: 80px;
-    /* background-color: purple; */
+  max-width: 1536px;
+  margin-left: auto;
+  margin-right: auto;
+  /*Adding these paddings because as we shrink the width of screen for small screens the text is gonna stick to the edges and we don't want that to happen*/
+  padding-left: 80px;
+  padding-right: 80px;
+  /* background-color: purple; */
 }
 
 @media screen and (max-width: 1536px) {
-    .wrapper {
-        max-width: 1336px;
-    }
+  .navContainer {
+    max-width: 1336px;
+  }
+  .wrapper {
+    max-width: 1336px;
+  }
 }
 
 @media screen and (max-width: 1280px) {
-    .wrapper {
-        max-width: 1024px;
-    }
+  .wrapper {
+    max-width: 1024px;
+  }
+  .navContainer {
+    max-width: 1024px;
+  }
 }
 
 @media screen and (max-width: 1024px) {
-    .wrapper {
-        max-width: 768px;
-        padding-left: 40px;
-        padding-right: 40px;
-    }
+  .wrapper {
+    max-width: 768px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .navContainer {
+    max-width: 768px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
 }
 
 @media screen and (max-width: 768px) {
-    .wrapper {
-        max-width: 640px;
-    }
+  .wrapper {
+    max-width: 640px;
+  }
+  .navContainer {
+    max-width: 640px;
+  }
 }
 
 @media screen and (max-width: 640px) {
-    .wrapper {
-        max-width: 475px;
-    }
+  .wrapper {
+    max-width: 475px;
+  }
+  .navContainer {
+    max-width: 475px;
+  }
 }

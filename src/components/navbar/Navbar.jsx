@@ -11,11 +11,10 @@ import { cn } from "@/utils";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   return (
-    <div className="sticky top-0 z-[9999] bg-[var(--bg)]">
+    <div className="sticky top-0 z-[9999] bg-bg shadow-lg flex justify-center items-center">
       <div
         className={cn(
-          styles.container,
-          "relative flex h-24 items-center justify-between gap-8",
+          "navContainer w-full max-w-[475px] ms:max-w-[640px] md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1336px] relative flex h-24 items-center justify-between gap-8",
         )}
       >
         <div className={cn(styles.social, "hidden flex-1 gap-3 lg:flex")}>
@@ -34,14 +33,15 @@ const Navbar = () => {
           <Image src="/tiktok.png" alt="linkedin logo" width={24} height={24} />
           <Image src="/youtube.png" alt="youtube logo" width={24} height={24} />
         </div>
-        <div
+        <Link
+          href="/"
           className={cn(
             styles.logo,
-            "text-left xxs:text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-center",
+            "text-left font-semibold xxs:text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-center",
           )}
         >
           Rishav Sharma
-        </div>
+        </Link>
         <div
           className={cn(
             styles.links,

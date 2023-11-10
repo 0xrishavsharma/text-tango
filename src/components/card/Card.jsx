@@ -3,8 +3,13 @@ import Image from "next/image";
 const Card = () => {
   return (
     <div className="flex flex-col justify-between gap-12 md:flex-row">
-      <div className="relative hidden flex-1  xl:block">
-        <Image className="flex-1 object-cover" src="/p1.jpeg" alt="" fill />
+      <div className="relative hidden flex-1 xl:flex">
+        <Image
+          className="hidden flex-1 object-cover xl:flex"
+          src="/p1.jpeg"
+          alt=""
+          fill
+        />
       </div>
       <div className="flex flex-1 flex-col justify-between gap-3">
         <div className="flex gap-2 font-medium opacity-90">

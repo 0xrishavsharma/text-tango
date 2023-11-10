@@ -19,8 +19,8 @@ export default function RootLayout({ children }) {
         <ThemeContextProvider>
           <ThemeProvider>
             <div className="min-h-screen bg-[--bg] text-[--textColor]">
+              <Navbar />
               <div className="wrapper relative">
-                <Navbar />
                 {children}
                 <Footer />
               </div>
