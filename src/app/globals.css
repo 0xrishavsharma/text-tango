@@ -8,6 +8,7 @@
     --textColor: black;
     --softBg: #f0f0f0;
     --softTextColor: #626262;
+    --softestTextColor: #b3b3b1;
   }
 }
 
@@ -54,59 +55,47 @@ so that's why we'll handle bg color in the layout.js file*/
   /* background-color: purple; */
 }
 
-@media screen and (max-width: 1536px) {
-  .navContainer {
-    max-width: 1336px;
-  }
-  .wrapper {
-    max-width: 1336px;
-  }
-}
-
-@media screen and (max-width: 1280px) {
-  .wrapper {
-    max-width: 1024px;
-  }
-  .navContainer {
-    max-width: 1024px;
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .wrapper {
-    max-width: 768px;
-    padding-left: 40px;
-    padding-right: 40px;
-  }
-  .navContainer {
-    max-width: 768px;
-    padding-left: 40px;
-    padding-right: 40px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .wrapper {
-    max-width: 640px;
-  }
-  .navContainer {
-    max-width: 640px;
-  }
-}
-
-@media screen and (max-width: 640px) {
-  .wrapper {
-    max-width: 475px;
-  }
-  .navContainer {
-    max-width: 475px;
-  }
-}
-
 .ql-container {
   font-size: 28px !important;
 }
 
 .quill > .ql-container > .ql-editor.ql-blank::before {
   color: #b3b3b1;
+}
+
+@media screen and (max-width: 1536px) {
+  .navContainer,
+  .wrapper {
+    max-width: 1366px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .navContainer,
+  .wrapper {
+    max-width: 1024px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .navContainer,
+  .wrapper {
+    max-width: 768px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navContainer,
+  .wrapper {
+    max-width: 640px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .navContainer,
+  .wrapper {
+    max-width: 475px;
+  }
 }

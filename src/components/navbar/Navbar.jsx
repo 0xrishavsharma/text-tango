@@ -7,14 +7,15 @@ import ThemeToggle from "../themeToggle/ThemeToggle";
 import AuthLinks from "../authLinks/AuthLinks";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { AiOutlineClose } from "react-icons/ai";
-import { cn } from "@/utils";
+import { cn } from "@/utils/utils";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   return (
-    <div className="sticky top-0 z-[9999] bg-bg shadow-lg flex justify-center items-center">
+    <div className="sticky top-0 z-[999] flex items-center justify-center bg-bg shadow-sm">
       <div
         className={cn(
-          "navContainer w-full max-w-[475px] ms:max-w-[640px] md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1336px] relative flex h-24 items-center justify-between gap-8",
+          // "navContainer relative flex h-24 w-full items-center justify-between gap-8 max-[1536px]:max-w-[1336px] max-[1280px]:max-w-[1024px] max-[1024px]:max-w-[768px] max-[768px]:max-w-[640px] max-[640px]:max-w-[484px]",
+          "navContainer relative flex h-24 w-full max-w-[1336px] items-center justify-between gap-8",
         )}
       >
         <div className={cn(styles.social, "hidden flex-1 gap-3 lg:flex")}>

@@ -1,4 +1,4 @@
-import { cn, smallCardData } from "@/utils";
+import { cn, smallCardData } from "@/utils/utils";
 import Link from "next/link";
 import React from "react";
 

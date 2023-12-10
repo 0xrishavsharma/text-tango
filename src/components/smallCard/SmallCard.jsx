@@ -1,4 +1,4 @@
-import { cn } from "@/utils";
+import { cn } from "@/utils/utils";
 import Image from "next/image";
 import React from "react";
 
@@ -18,7 +18,7 @@ const SmallCard = ({ type, tag, tagColor, para, author, img, date }) => {
       <div className="flex flex-[4] flex-col gap-2">
         <span
           className={cn(
-            "w-max rounded-3xl px-2 py-[3px] text-xs lg:text-sm xl:text-base text-white",
+            "w-max rounded-3xl px-2 py-[3px] text-xs text-white lg:text-sm xl:text-base",
             tagColor,
           )}
         >

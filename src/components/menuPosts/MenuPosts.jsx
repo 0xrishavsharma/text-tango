@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import SmallCard from "../smallCard/SmallCard";
-import { smallCardData } from "@/utils";
+import { smallCardData } from "@/utils/utils";
 
 const MenuPosts = ({ type }) => {
   const firstFourData = smallCardData.slice(0, 4);

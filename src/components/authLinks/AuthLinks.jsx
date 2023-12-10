@@ -3,7 +3,7 @@ import styles from "./authLinks.module.css";
 import Link from "next/link";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import { cn } from "@/utils";
+import { cn } from "@/utils/utils";
 
 const AuthLinks = () => {
   const [open, setOpen] = useState(false);

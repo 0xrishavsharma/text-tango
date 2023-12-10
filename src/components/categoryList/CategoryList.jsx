@@ -2,18 +2,15 @@ import React from "react";
 import styles from "./categoryList.module.css";
 import Image from "next/image";
 import Link from "next/link";
-import { cn } from "@/utils";
+import { cn } from "@/utils/utils";
 
-
-const categories = [
-  {
-
-  }
-]
+const categories = [{}];
 const CategoryList = () => {
   return (
     <div className="flex flex-col">
-      <h1 className="my-12 text-2xl lg:text-3xl font-bold">Popular Categories</h1>
+      <h1 className="my-12 text-2xl font-bold lg:text-3xl">
+        Popular Categories
+      </h1>
       {/* <div className="flex w-full flex-wrap justify-between gap-3"> */}
       <div className={cn(styles.categories, "gap-3 text-[var(--textColor)]")}>
         <Link

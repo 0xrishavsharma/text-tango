@@ -15,6 +15,7 @@ module.exports = {
         textColor: "var(--textColor)",
         softBg: "var(--softBg)",
         softTextColor: "var(--softTextColor)",
+        softestTextColor: "var(--softestTextColor)",
       },
     },
     screens: {
