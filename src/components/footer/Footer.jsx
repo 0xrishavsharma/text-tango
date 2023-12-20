@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <div className="mt-12 flex flex-col gap-10 lg:items-center justify-between py-5 text-[var(--softTextColor)] md:flex-row">
+    <div className="mt-12 flex flex-col justify-between gap-10 py-5 text-[var(--softTextColor)] md:flex-row lg:items-center">
       <div className="flex flex-1 flex-col gap-4">
         <div className="flex items-center gap-4">
           <div className="w-max rounded-full border-[2px] border-gray-200">
@@ -17,9 +17,9 @@ const Footer = () => {
               height={40}
             />
           </div>
-          <h1 className="text-xl md:text-2xl font-bold">Rishav Sharma</h1>
+          <h1 className="text-xl font-bold md:text-2xl">Rishav Sharma</h1>
         </div>
-        <span className="text-sm xl:text-base font-light leading-[1.1] text-[var(--softTextColor)]">
+        <span className="text-sm font-light leading-[1.1] text-[var(--softTextColor)] xl:text-base">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
           at quidem recusandae consequuntur iure. In soluta reprehenderit facere
           illo rem suscipit cum numquam, tempore doloremque similique eius ut
@@ -42,7 +42,7 @@ const Footer = () => {
           <Image src="/youtube.png" alt="youtube logo" width={18} height={18} />
         </div>
       </div>
-      <div className="flex flex-col sm:flex-row flex-1 gap-8 sm:gap-12 py-5 text-[--var(--softTextColor)] justify-between lg:justify-end lg:gap-24">
+      <div className="flex flex-1 flex-col justify-between gap-8 py-5 text-[--var(--softTextColor)] sm:flex-row sm:gap-12 lg:justify-end lg:gap-24">
         <div className="flex flex-col gap-3">
           <span className="font-bold">Links</span>
           <Link className="text-sm lg:text-base" href={"/"}>

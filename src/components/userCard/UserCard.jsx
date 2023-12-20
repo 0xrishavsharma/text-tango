@@ -13,7 +13,7 @@ const UserCard = () => {
         />
       </div>
       <div className="flex flex-col gap-[2px] text-softTextColor">
-        <h3 className="font-semibold text-lg">Verika Pakhija</h3>
+        <h3 className="text-lg font-semibold">Verika Pakhija</h3>
         <p className="text-base">25th April 2023</p>
       </div>
     </div>

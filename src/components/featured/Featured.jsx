@@ -14,19 +14,19 @@ const Featured = () => {
       </h1>
       <div className="space-between mt-12 flex flex-col gap-8 ms:flex-row">
         {/* <div className='flex gap-8 mt-12 space-between'> */}
-        <div className="relative h-64 w-64 flex-1 md:w-96 md:h-96">
+        <div className="relative h-64 w-64 flex-1 md:h-96 md:w-96">
           <Image
             src="/p1.jpeg"
-            className="absolute bottom-0 left-0 right-0 top-0 object-cover h-full w-full"
+            className="absolute bottom-0 left-0 right-0 top-0 h-full w-full object-cover"
             fill
             alt=""
           />
         </div>
         <div className="flex flex-1 flex-col justify-center gap-4">
-          <h1 className=" text-3xl lg:text-4xl font-bold">
+          <h1 className=" text-3xl font-bold lg:text-4xl">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit
           </h1>
-          <p className="text-base xl:text-lg font-light text-[var(--softTextColor)]">
+          <p className="text-base font-light text-[var(--softTextColor)] xl:text-lg">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo
             minus veritatis qui tempore perspiciatis, cumque saepe sint officiis
             aliquid pariatur. Lorem ipsum dolor sit amet consectetur adipisicing
@@ -34,7 +34,7 @@ const Featured = () => {
           </p>
           <Link
             href="/"
-            className="w-max rounded bg-[var(--textColor)] px-3 py-2 text-sm lg:text-base xl:text-lg text-[var(--bg)]"
+            className="w-max rounded bg-[var(--textColor)] px-3 py-2 text-sm text-[var(--bg)] lg:text-base xl:text-lg"
           >
             Read More
           </Link>

@@ -10,13 +10,13 @@ const SinglePage = () => {
     <div className="">
       <div className="flex items-center justify-between gap-12">
         <div className="flex flex-1 flex-col">
-          <h1 className="mb-12 text-4xl xl:text-5xl 2xl:text-6xl font-semibold">
+          <h1 className="mb-12 text-4xl font-semibold xl:text-5xl 2xl:text-6xl">
             Lorem ipsum dolor sit ame. voluptatum place at atque autem
             perferendis?
           </h1>
           <UserCard />
         </div>
-        <div className="relative h-96 flex-1 hidden lg:block">
+        <div className="relative hidden h-96 flex-1 lg:block">
           <Image
             src="/p1.jpeg"
             className="rounded-sm object-cover"
@@ -28,23 +28,23 @@ const SinglePage = () => {
       <div className="flex max-w-max gap-12">
         <div className="mt-12 flex-[5]">
           <div className="flex flex-col">
-            <p className="mb-6 text-lg ms:text-xl font-light">
+            <p className="mb-6 text-lg font-light ms:text-xl">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
               harum non, cupiditate placeat praesentium natus quasi quo dolorem,
               facilis vel sequi iusto sapiente! Eligendi, quae.
             </p>
             <h5 className="text-2xl font-bold">Lorem ipsum dolor sit.</h5>
-            <p className="mb-5 text-lg ms:text-xl font-light">
+            <p className="mb-5 text-lg font-light ms:text-xl">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
               harum non, cupiditate placeat praesentium natus quasi quo dolorem,
               facilis vel sequi iusto sapiente! Eligendi, quae.
             </p>
-            <p className="mb-5 text-lg ms:text-xl font-light">
+            <p className="mb-5 text-lg font-light ms:text-xl">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
               harum non, cupiditate placeat praesentium natus quasi quo dolorem,
               facilis vel sequi iusto sapiente! Eligendi, quae.
             </p>
-            <p className="mb-5 text-lg ms:text-xl font-light">
+            <p className="mb-5 text-lg font-light ms:text-xl">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
               harum non, cupiditate placeat praesentium natus quasi quo dolorem,
               facilis vel sequi iusto sapiente! Eligendi, quae.
@@ -53,7 +53,6 @@ const SinglePage = () => {
           <div>
             <Comments />
           </div>
-         
         </div>
         <Menu />
       </div>

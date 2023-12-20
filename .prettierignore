@@ -1,0 +1,11 @@
+.yarn
+.next
+dist
+build
+node_modules
+.eslintrc.js
+.gitignore
+.husky
+.npmrc
+.nvmrc
+.prettierignore
