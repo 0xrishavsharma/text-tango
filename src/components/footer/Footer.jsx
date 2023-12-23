@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="w-max rounded-full border-[2px] border-gray-200">
             <Image
               className="rounded-full"
-              src={"/logo.png"}
+              src={"/rishavsharma.png"}
               alt=""
               width={40}
               height={40}

@@ -1,9 +1,6 @@
 import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
 
-console.log("Google provider", GoogleProvider);
-console.log("Github provider", GithubProvider);
-
 export const authProviders = {
   providers: [
     GoogleProvider({
@@ -15,5 +12,4 @@ export const authProviders = {
       clientSecret: process.env.GITHUB_SECRET,
     }),
   ],
-  secret: "adfadfads",
 };
