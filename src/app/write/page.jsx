@@ -5,10 +5,21 @@ import "react-quill/dist/quill.bubble.css";
 import ReactQuill from "react-quill";
 import { cn } from "@/utils/utils";
 import { motion } from "framer-motion";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const WritePage = () => {
   const [isOpen, setIsOpen] = useState();
   const [value, setValue] = useState("");
+
+  const { status } = useSession;
+  const { push } = useRouter();
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
+  if (status === "unauthenticated") {
+    pass("/login");
+  }
 
   const editorVariants = {
     open: { opacity: 1, x: 0 },

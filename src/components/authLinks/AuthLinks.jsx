@@ -4,13 +4,14 @@ import Link from "next/link";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { cn } from "@/utils/utils";
+import { signOut, useSession } from "next-auth/react";
 
 const AuthLinks = () => {
   const [open, setOpen] = useState(false);
-  const status = "notauthenticated";
+  const { data, status } = useSession();
   return (
     <>
-      {status === "notauthenticated" ? (
+      {status === "unauthenticated" ? (
         <Link href="/login" className="hidden md:block">
           Login
         </Link>
@@ -19,7 +20,9 @@ const AuthLinks = () => {
           <Link href="/write" className="">
             Write
           </Link>
-          <span className={styles.link}>Logout</span>
+          <span className={styles.link} onClick={signOut}>
+            Logout
+          </span>
         </>
       )}
       {/* <RxHamburgerMenu onClick={() => setOpen(!open)} className={`${open ? "hidden" : "block"} sm:hidden cursor-pointer`} /> */}

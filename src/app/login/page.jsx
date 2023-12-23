@@ -1,12 +1,19 @@
 "use client";
 import { signIn, useSession } from "next-auth/react";
 import React from "react";
+import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
   const { data, status } = useSession();
+  const { push } = useRouter();
 
-  console.log("SessionProvider data", data);
-  console.log("SessionProvider status", status);
+  if (status === "loading") {
+    return <div>Loading</div>;
+  }
+  if (status === "authenticated") {
+    push("/");
+  }
+
   return (
     <div className="mt-20 flex items-center  justify-center xl:min-h-[calc(100vh_-_380px)]">
       <div className="flex flex-col gap-12 bg-softBg p-6 xs:p-10 sm:p-16 md:p-24 ">
