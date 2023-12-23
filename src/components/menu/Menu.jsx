@@ -5,7 +5,7 @@ import { cn, smallCardData } from "@/utils/utils";
 import Link from "next/link";
 import Image from "next/image";
 import SmallCard from "../smallCard/SmallCard";
-import MenuCategories from "../menuCategories/menuCategories.jsx";
+import MenuCategories from "../menuCategories/MenuCategories.jsx";
 import MenuPosts from "../menuPosts/MenuPosts.jsx";
 
 const Menu = ({ className }) => {
