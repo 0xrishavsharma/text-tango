@@ -5,10 +5,14 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { cn } from "@/utils/utils";
 import { signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 
 const AuthLinks = () => {
   const [open, setOpen] = useState(false);
   const { data, status } = useSession();
+  const [settingsOpen, setSettingsOpen] = useState(false);
+
+  console.log("Data", data);
   return (
     <>
       {status === "unauthenticated" ? (
@@ -20,9 +24,37 @@ const AuthLinks = () => {
           <Link href="/write" className="">
             Write
           </Link>
-          <span className={styles.link} onClick={signOut}>
-            Logout
+          <span
+            className={cn(
+              styles.link,
+              "relative flex items-center gap-2 border-[0.1px] bg-black/10 border-black/40 dark:border-white/30  dark:bg-white/10 px-3 py-2 w-fit rounded-lg cursor-pointer select-none",
+              )}
+            onClick={() => setSettingsOpen(!settingsOpen)}
+            >
+              <div className="border-[0.4px] dark:border-white/40 rounded-full">
+
+            <Image
+              src={data?.user?.image}
+              className="rounded-full"
+              width={30}
+              height={30}
+              alt="user image"
+            />
+              </div>
+            <p className="text-lg">{data?.user?.name}</p>
           </span>
+            {settingsOpen && 
+              <div className="absolute top-20 right-0 z-[9999] max-h-max w-max items-center justify-center bg-red-700">
+                <div className="relative flex w-full flex-col items-center gap-8">
+                  <Link className="" href="/settings">
+                    Settings
+                  </Link>
+                  <Link className="" href="" onClick={signOut}>
+                    Logout
+                  </Link>
+                </div>
+              </div>
+            }
         </>
       )}
       {/* <RxHamburgerMenu onClick={() => setOpen(!open)} className={`${open ? "hidden" : "block"} sm:hidden cursor-pointer`} /> */}
@@ -56,7 +88,10 @@ const AuthLinks = () => {
                   <Link className="text-3xl" href="/write">
                     Write
                   </Link>
-                  <span className={cn(styles.link, "text-4xl")}>Logout</span>
+                  <span className={cn(styles.link, "text-4xl")}>
+                    <Image src={data?.user?.user?.image} alt="user image" />
+                    {data?.user?.user?.name}
+                  </span>
                 </>
               )}
             </div>

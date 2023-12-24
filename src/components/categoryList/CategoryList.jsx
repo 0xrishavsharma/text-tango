@@ -65,7 +65,7 @@ const CategoryList = () => {
             >
               <Image
                 className="h-6 w-6 rounded-full"
-                src="/style.png"
+                src={category?.img}
                 alt=""
                 height={32}
                 width={32}
