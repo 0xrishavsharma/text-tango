@@ -15,20 +15,15 @@ const getPosts = async (page) => {
 };
 
 const CardList = async ({ className, page }) => {
-
   const posts = await getPosts(page);
   return (
     <div className={cn(styles.container, className, "flex-[5]")}>
       <div className={cn("")}>
         <h1 className="my-12 text-2xl font-bold xl:text-3xl">Recent Posts</h1>
         <div className="flex flex-col gap-12">
-          {
-            posts?.map((post) => {
-              return (
-                <Card key={post._id} post={post} />
-              );
-            })
-          }
+          {posts?.map((post) => {
+            return <Card key={post._id} post={post} />;
+          })}
         </div>
       </div>
       <Pagination />

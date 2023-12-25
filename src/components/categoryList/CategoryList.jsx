@@ -3,7 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/utils/utils";
 const getCategories = async () => {
-  const res = await fetch("http://localhost:3000/api/categories", { cache: "no-cache" });
+  const res = await fetch("http://localhost:3000/api/categories", {
+    cache: "no-cache",
+  });
   if (!res.ok) throw new Error("Something went wrong");
   const data = await res.json();
   return data;
@@ -38,13 +40,15 @@ const CategoryList = async () => {
                 color,
               )}
             >
-             { category.img && <Image
-                className="h-10 w-10 rounded-full object-cover"
-                src={category?.img}
-                alt=""
-                height={50}
-                width={50}
-              />}
+              {category.img && (
+                <Image
+                  className="h-10 w-10 rounded-full object-cover"
+                  src={category?.img}
+                  alt=""
+                  height={50}
+                  width={50}
+                />
+              )}
               <p className="text-lg">{category.title}</p>
             </Link>
           );
