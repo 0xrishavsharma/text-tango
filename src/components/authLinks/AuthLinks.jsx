@@ -27,34 +27,33 @@ const AuthLinks = () => {
           <span
             className={cn(
               styles.link,
-              "relative flex items-center gap-2 border-[0.1px] bg-black/10 border-black/40 dark:border-white/30  dark:bg-white/10 px-3 py-2 w-fit rounded-lg cursor-pointer select-none",
-              )}
+              "relative flex w-fit cursor-pointer select-none items-center gap-2 rounded-lg  border-[0.1px] border-black/40 bg-black/10 px-3 py-2 dark:border-white/30 dark:bg-white/10",
+            )}
             onClick={() => setSettingsOpen(!settingsOpen)}
-            >
-              <div className="border-[0.4px] dark:border-white/40 rounded-full">
-
-            <Image
-              src={data?.user?.image}
-              className="rounded-full"
-              width={30}
-              height={30}
-              alt="user image"
-            />
-              </div>
+          >
+            <div className="rounded-full border-[0.4px] dark:border-white/40">
+              <Image
+                src={data?.user?.image}
+                className="rounded-full"
+                width={30}
+                height={30}
+                alt="user image"
+              />
+            </div>
             <p className="text-lg">{data?.user?.name}</p>
           </span>
-            {settingsOpen && 
-              <div className="absolute top-20 right-0 z-[9999] max-h-max w-max items-center justify-center bg-red-700">
-                <div className="relative flex w-full flex-col items-center gap-8">
-                  <Link className="" href="/settings">
-                    Settings
-                  </Link>
-                  <Link className="" href="" onClick={signOut}>
-                    Logout
-                  </Link>
-                </div>
+          {settingsOpen && (
+            <div className="absolute right-0 top-20 z-[9999] max-h-max w-max items-center justify-center bg-red-700">
+              <div className="relative flex w-full flex-col items-center gap-8">
+                <Link className="" href="/settings">
+                  Settings
+                </Link>
+                <Link className="" href="" onClick={signOut}>
+                  Logout
+                </Link>
               </div>
-            }
+            </div>
+          )}
         </>
       )}
       {/* <RxHamburgerMenu onClick={() => setOpen(!open)} className={`${open ? "hidden" : "block"} sm:hidden cursor-pointer`} /> */}
