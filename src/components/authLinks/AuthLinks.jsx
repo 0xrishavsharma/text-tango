@@ -41,19 +41,19 @@ const AuthLinks = () => {
               />
             </div>
             <p className="text-lg">{data?.user?.name}</p>
-          </span>
-          {settingsOpen && (
-            <div className="absolute right-0 top-20 z-[9999] max-h-max w-max items-center justify-center bg-red-700">
-              <div className="relative flex w-full flex-col items-center gap-8">
-                <Link className="" href="/settings">
-                  Settings
-                </Link>
-                <Link className="" href="" onClick={signOut}>
-                  Logout
-                </Link>
+            {settingsOpen && (
+              <div className="absolute right-0 top-20 z-[9999] max-h-max w-full items-center justify-center rounded-lg  border-[0.1px] border-white text-white bg-black/10 ">
+                <div className="relative flex w-full flex-col items-center gap-8 bg-white text-black rounded-lg py-5 px-6">
+                  <Link className="" href="/settings">
+                    Settings
+                  </Link>
+                  <Link className="" href="" onClick={signOut}>
+                    Logout
+                  </Link>
+                </div>
               </div>
-            </div>
-          )}
+            )}
+          </span>
         </>
       )}
       {/* <RxHamburgerMenu onClick={() => setOpen(!open)} className={`${open ? "hidden" : "block"} sm:hidden cursor-pointer`} /> */}
