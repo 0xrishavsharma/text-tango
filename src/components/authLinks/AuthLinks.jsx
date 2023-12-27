@@ -6,10 +6,20 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import { cn } from "@/utils/utils";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import { motion as m } from "framer-motion";
 
 const getFirstName = (name) => {
   const firstName = name?.split(" ")[0];
   return firstName?.length > 10 ? `${firstName?.slice(0, 10)}...` : firstName;
+};
+
+const motionNav = {
+  open: {
+    x: 0,
+    opacity: 1,
+    transition: { type: "spring", stiffness: 200, damping: 30 },
+  },
+  closed: { x: "100%", opacity: 0, transition: { delay: 0.2 } },
 };
 
 const AuthLinks = () => {
@@ -71,10 +81,13 @@ const AuthLinks = () => {
       {open && (
         <>
           {/* <AiOutlineCloseCircle style={{ width: "1.8rem" }} onClick={() => setOpen(false)} className={cn("z-10 h-5 absolute right-5 top-5 cursor-pointer", !open ? "hidden" : "block")} /> */}
-          <div className="fixed right-0 top-[100px] z-[9999] h-[calc(100vh_-_100px)] w-screen items-center justify-center bg-[var(--bg)]">
+          <m.div
+            className="fixed right-0 top-[100px] z-[9999] h-[calc(100vh_-_100px)] w-screen items-center justify-center bg-[var(--bg)]"
+            variants={motionNav}
+          >
             {/* <div className={cn('items-center w-screen h-screen pl-8 transition-all bg-red-100 shadow-sm backdrop:blur-3xl left-10', */}
             {/* open ? "absolute top-0 bottom-0 -right-[1000vw] transition-all" : "hidden")}> */}
-            <div className="relative flex h-full w-full flex-col items-center gap-20 pt-36 select-none">
+            <div className="relative flex h-full w-full select-none flex-col items-center gap-20 pt-36">
               <Link
                 className="text-3xl"
                 href="/"
@@ -120,7 +133,7 @@ const AuthLinks = () => {
                 </>
               )}
             </div>
-          </div>
+          </m.div>
         </>
       )}
     </>
