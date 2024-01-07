@@ -5,10 +5,10 @@ export const GET = async (req) => {
   const { searchParams } = new URL(req.url);
 
   const pageNumber = searchParams.get("page");
-  const POST_PER_PAGE = 5;
+  const POST_PER_PAGE = 3;
 
   try {
-    const posts = await prisma.post.findMany({
+    const [posts, count] = await prisma.post.$transaction({
       take: POST_PER_PAGE,
       skip: POST_PER_PAGE * (pageNumber - 1), // this is going to skip the first number of pages that come up after this calculation
     });
