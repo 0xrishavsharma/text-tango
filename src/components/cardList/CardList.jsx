@@ -8,17 +8,21 @@ const getPosts = async (page) => {
   const res = await fetch(`http://localhost:3000/api/posts?page=${page}`, {
     cache: "no-cache",
   });
-  if (!res.ok) throw new Error("Something went wrong");
+  if (!res.ok) {
+    console.error(`Error: ${res.status} ${res.statusText}`);
+    // throw new Error("Something went wrong");
+  }
   const data = await res.json();
   return data;
 };
 
 const CardList = async ({ className, page }) => {
-  const posts = await getPosts(page);
+  const { posts, count } = await getPosts(page);
 
-  const POST_PER_PAGE = 3;
-  const hasPrevItems = POST_PER_PAGE * (page-1) > 0;
-  const hasNextItems = posts.length > 0;
+  const POST_PER_PAGE = 5;
+  const hasPrevItems = POST_PER_PAGE * (page - 1) > 0;
+  // const hasNextItems = POST_PER_PAGE * page < count;
+  const hasNextItems = POST_PER_PAGE * (page - 1) + POST_PER_PAGE < count;
   return (
     <div className={cn(styles.container, className, "flex-[5]")}>
       <div className={cn("")}>

@@ -11,7 +11,7 @@ const getCategories = async () => {
   return data;
 };
 const CategoryList = async () => {
-  const categories = await getCategories();
+  const categories = await getCategories();       
 
   const categoriesColors = [
     "bg-blue-400/50",
@@ -36,17 +36,17 @@ const CategoryList = async () => {
               key={category._id}
               href={`/blog?cat=${category.title}`}
               className={cn(
-                "flex h-16 w-full items-center justify-center gap-5 rounded-lg px-10 capitalize",
+                "flex h-16 w-full items-center justify-center gap-5 rounded-lg px-10 capitalize lg:gap-2 xl:gap-5",
                 color,
               )}
             >
               {category.img && (
                 <Image
-                  className="h-10 w-10 rounded-full object-cover"
+                  className="aspect-[3/2] h-10 w-10 rounded-full object-cover"
                   src={category?.img}
                   alt=""
-                  height={50}
-                  width={50}
+                  width="40"
+                  height={40}
                 />
               )}
               <p className="text-lg">{category.title}</p>

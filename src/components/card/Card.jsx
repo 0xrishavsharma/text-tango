@@ -28,8 +28,10 @@ const Card = ({ key, post }) => {
             "Lorem ipsum dolor sit amet consectetur adipisicing elit."}
         </h2>
         <p className=" text-[var(--softTextColor)] xl:text-lg">
-          {post.content ||
-            "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae eos beatae enim? Voluptatem architecto enim error. Tempora modi voluptatum quo aperiam, ipsa ratione placeat commodi atque dignissimos eius, vel inventore."}
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae eos
+          beatae enim? Voluptatem architecto enim error. Tempora modi voluptatum
+          quo aperiam, ipsa ratione placeat commodi atque dignissimos eius, vel
+          inventore.
         </p>
         <button className="relative w-max text-sm font-semibold after:absolute after:-bottom-[2px] after:left-0 after:h-[1.7px] after:w-full after:bg-red-500">
           Read More
