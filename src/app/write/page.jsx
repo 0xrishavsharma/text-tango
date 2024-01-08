@@ -2,11 +2,12 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import "react-quill/dist/quill.bubble.css";
-import ReactQuill from "react-quill";
 import { cn } from "@/utils/utils";
 import { motion } from "framer-motion";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
+const ReactQuill = dynamic(import("react-quill"), { ssr: false });
 
 const WritePage = () => {
   const [isOpen, setIsOpen] = useState();
