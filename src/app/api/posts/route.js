@@ -4,16 +4,18 @@ import { NextResponse } from "next/server";
 export const GET = async (req) => {
   const { searchParams } = new URL(req.url);
 
+  let category = searchParams.get("category");
   let pageNumber = Number(searchParams.get("page"));
-  const POST_PER_PAGE = process.env.POST_PER_PAGE || 5;
+
+  const POSTS_PER_PAGE = parseInt(process.env.POSTS_PER_PAGE) || 5;
 
   if (!pageNumber || pageNumber < 1) {
     pageNumber = 1; // default to page 1 if invalid page number provided
   }
 
   const query = {
-    take: POST_PER_PAGE,
-    skip: POST_PER_PAGE * (pageNumber - 1),
+    take: POSTS_PER_PAGE,
+    skip: POSTS_PER_PAGE * (pageNumber - 1),
     where: {
       ...(category && { categorySlug: category }),
     },

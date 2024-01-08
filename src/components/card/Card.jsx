@@ -13,14 +13,10 @@ const Card = ({ key, post }) => {
       </div>
       <div className="flex flex-1 flex-col justify-between gap-3">
         <div className="flex gap-2 font-medium opacity-90">
-          <span>
-            {new Date(post.createdAt).toLocaleDateString("en-US", {
-              day: "numeric",
-            })}
-          </span>
+          <span>{post.createdAt.substring(0, 10)}</span>
           <span>-</span>
-          <span className="text-base text-red-500 xl:text-lg">
-            {post.category || "CULTURE"}
+          <span className="text-base capitalize text-red-500 xl:text-lg">
+            {post.categorySlug}
           </span>
         </div>
         <h2 className="text-2xl font-bold xl:text-3xl">

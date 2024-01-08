@@ -22,10 +22,10 @@ const getPosts = async (page, category) => {
 const CardList = async ({ className, page, category }) => {
   const { posts, count } = await getPosts(page);
 
-  const POST_PER_PAGE = process.env.POST_PER_PAGE || 5;
-  const hasPrevItems = POST_PER_PAGE * (page - 1) > 0;
-  // const hasNextItems = POST_PER_PAGE * page < count;
-  const hasNextItems = POST_PER_PAGE * (page - 1) + POST_PER_PAGE < count;
+  const POSTS_PER_PAGE = process.env.POSTS_PER_PAGE || 5;
+  const hasPrevItems = POSTS_PER_PAGE * (page - 1) > 0;
+  // const hasNextItems = POSTS_PER_PAGE * page < count;
+  const hasNextItems = POSTS_PER_PAGE * (page - 1) + POSTS_PER_PAGE < count;
   return (
     <div className={cn(styles.container, className, "flex-[5]")}>
       <div className={cn("")}>
