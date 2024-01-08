@@ -13,7 +13,7 @@ const MenuCategories = ({ type }) => {
         {smallCardData.map((card, i) => {
           return (
             <Link
-              key={i}
+              key={i + 1}
               href={"/blog?cat="}
               className={cn(
                 "w-max rounded px-3 py-[4px] text-sm text-white",

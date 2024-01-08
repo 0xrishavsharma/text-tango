@@ -11,7 +11,7 @@ const getCategories = async () => {
   return data;
 };
 const CategoryList = async () => {
-  const categories = await getCategories();       
+  const categories = await getCategories();
 
   const categoriesColors = [
     "bg-blue-400/50",
@@ -34,7 +34,7 @@ const CategoryList = async () => {
           return (
             <Link
               key={category._id}
-              href={`/blog?cat=${category.title}`}
+              href={`/blog?category=${category.title}`}
               className={cn(
                 "flex h-16 w-full items-center justify-center gap-5 rounded-lg px-10 capitalize lg:gap-2 xl:gap-5",
                 color,

@@ -5,14 +5,14 @@ import { cn } from "@/utils/utils";
 
 const BlogPage = ({ searchParams }) => {
   const page = parseInt(searchParams.page) || 1;
-  const {cat} = searchParams;
+  const { category } = searchParams;
   return (
     <div className="">
       <h1 className="bg-orange-300 p-2 text-center font-semibold text-white">
-        Style Blog
+        <span className="capitalize">{category} Blog</span>
       </h1>
       <div className={cn("flex gap-12")}>
-        <CardList page={page} cat={cat} />
+        <CardList page={page} category={category} />
         <Menu />
       </div>
     </div>

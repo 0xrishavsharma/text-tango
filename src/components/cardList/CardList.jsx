@@ -4,10 +4,13 @@ import Pagination from "../pagination/Pagination";
 import { cn } from "@/utils/utils";
 import Card from "../card/Card";
 
-const getPosts = async (page) => {
-  const res = await fetch(`http://localhost:3000/api/posts?page=${page}`, {
-    cache: "no-cache",
-  });
+const getPosts = async (page, category) => {
+  const res = await fetch(
+    `http://localhost:3000/api/posts?page=${page}&category${category || ""}`,
+    {
+      cache: "no-cache",
+    },
+  );
   if (!res.ok) {
     console.error(`Error: ${res.status} ${res.statusText}`);
     // throw new Error("Something went wrong");
@@ -16,10 +19,10 @@ const getPosts = async (page) => {
   return data;
 };
 
-const CardList = async ({ className, page }) => {
+const CardList = async ({ className, page, category }) => {
   const { posts, count } = await getPosts(page);
 
-  const POST_PER_PAGE = 5;
+  const POST_PER_PAGE = process.env.POST_PER_PAGE || 5;
   const hasPrevItems = POST_PER_PAGE * (page - 1) > 0;
   // const hasNextItems = POST_PER_PAGE * page < count;
   const hasNextItems = POST_PER_PAGE * (page - 1) + POST_PER_PAGE < count;

@@ -15,7 +15,7 @@ const MenuPosts = ({ type }) => {
       <div className="flex flex-col gap-8">
         {firstFourData.map((card, i) => {
           return (
-            <Link href={"/"} className="" key={i}>
+            <Link href={"/"} className="" key={i + 1}>
               <SmallCard
                 type={type}
                 tag={card.tag}

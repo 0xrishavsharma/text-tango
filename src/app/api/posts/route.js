@@ -5,7 +5,7 @@ export const GET = async (req) => {
   const { searchParams } = new URL(req.url);
 
   let pageNumber = Number(searchParams.get("page"));
-  const POST_PER_PAGE = 5;
+  const POST_PER_PAGE = process.env.POST_PER_PAGE || 5;
 
   if (!pageNumber || pageNumber < 1) {
     pageNumber = 1; // default to page 1 if invalid page number provided
@@ -14,12 +14,15 @@ export const GET = async (req) => {
   const query = {
     take: POST_PER_PAGE,
     skip: POST_PER_PAGE * (pageNumber - 1),
+    where: {
+      ...(category && { categorySlug: category }),
+    },
   };
 
   try {
     const [posts, count] = await prisma.$transaction([
       prisma.post.findMany(query),
-      prisma.post.count(),
+      prisma.post.count({ where: query.where }),
     ]);
     return new NextResponse(JSON.stringify({ posts, count }), { status: 200 });
   } catch (err) {
