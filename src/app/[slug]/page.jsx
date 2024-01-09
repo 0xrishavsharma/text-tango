@@ -1,4 +1,5 @@
-import Comments from "@/components/comments/Comments";
+import Comment from "@/components/comment/Comment";
+import CommentSection from "@/components/commentSection/CommentSection";
 import Menu from "@/components/menu/Menu";
 import UserCard from "@/components/userCard/UserCard";
 import Image from "next/image";
@@ -51,7 +52,10 @@ const SinglePage = () => {
             </p>
           </div>
           <div>
-            <Comments />
+            <CommentSection
+              content=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum
+            adipisci aperiam voluptates et."
+            />
           </div>
         </div>
         <Menu />

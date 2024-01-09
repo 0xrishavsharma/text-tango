@@ -8,13 +8,13 @@ import SmallCard from "../smallCard/SmallCard";
 import MenuCategories from "../menuCategories/MenuCategories.jsx";
 import MenuPosts from "../menuPosts/MenuPosts.jsx";
 
-const Menu = ({ className }) => {
+const Menu = ({ className, category }) => {
   return (
     <div
       className={cn(styles.container, className, "hidden flex-[2] lg:block")}
     >
       <MenuPosts type="hot" />
-      <MenuCategories />
+      <MenuCategories category={category} />
       <MenuPosts type="editors" />
     </div>
   );

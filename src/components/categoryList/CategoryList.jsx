@@ -1,36 +1,20 @@
 import styles from "./categoryList.module.css";
 import Image from "next/image";
 import Link from "next/link";
-import { cn } from "@/utils/utils";
-const getCategories = async () => {
-  const res = await fetch("http://localhost:3000/api/categories", {
-    cache: "no-cache",
-  });
-  if (!res.ok) throw new Error("Something went wrong");
-  const data = await res.json();
-  return data;
-};
+import { cn } from "@/utils/utils.js";
+import { categoryColors } from "@/utils/utils";
+import useFetch from "@/hooks/useFetch";
 const CategoryList = async () => {
-  const categories = await getCategories();
-
-  const categoriesColors = [
-    "bg-blue-400/50",
-    "bg-pink-400/50",
-    "bg-green-400/50",
-    "bg-red-400/50",
-    "bg-orange-400/50",
-    "bg-purple-400/50",
-  ];
+  const categories = await useFetch("categories");
 
   return (
     <div className="flex flex-col">
       <h1 className="my-12 text-2xl font-bold lg:text-3xl">
         Popular Categories
       </h1>
-      {/* <div className="flex w-full flex-wrap justify-between gap-3"> */}
       <div className={cn(styles.categories, "gap-8 text-[var(--textColor)]")}>
         {categories?.map((category, index) => {
-          const color = categoriesColors[index % categoriesColors.length];
+          const color = categoryColors[index % categoryColors.length];
           return (
             <Link
               key={category._id}

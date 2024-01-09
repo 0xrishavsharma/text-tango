@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "./cardList.module.css";
 import Pagination from "../pagination/Pagination";
-import { cn } from "@/utils/utils";
+import { cn, targetUrl } from "@/utils/utils";
 import Card from "../card/Card";
 
 const getPosts = async (page, category) => {
   const res = await fetch(
-    `http://localhost:3000/api/posts?page=${page}&category${category || ""}`,
+    `${targetUrl}/api/posts?page=${page}&category=${category || ""}`,
     {
       cache: "no-cache",
     },
@@ -20,7 +20,7 @@ const getPosts = async (page, category) => {
 };
 
 const CardList = async ({ className, page, category }) => {
-  const { posts, count } = await getPosts(page);
+  const { posts, count } = await getPosts(page, category);
 
   const POSTS_PER_PAGE = process.env.POSTS_PER_PAGE || 5;
   const hasPrevItems = POSTS_PER_PAGE * (page - 1) > 0;

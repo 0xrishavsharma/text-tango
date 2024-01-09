@@ -1,8 +1,11 @@
 import { cn, smallCardData } from "@/utils/utils";
 import Link from "next/link";
 import React from "react";
+import { getCategories, categoryColors } from "@/utils/utils";
+import useFetch from "@/hooks/useFetch";
 
-const MenuCategories = ({ type }) => {
+const MenuCategories = async ({ type, category }) => {
+  const categories = await useFetch("categories");
   return (
     <div>
       <div className="mb-8 mt-12">
@@ -10,17 +13,18 @@ const MenuCategories = ({ type }) => {
         <h1 className="text-2xl font-bold">Categories</h1>
       </div>
       <div className="flex flex-wrap gap-2">
-        {smallCardData.map((card, i) => {
+        {categories?.map((category, i) => {
+          const color = categoryColors[i % categoryColors.length];
           return (
             <Link
               key={i + 1}
-              href={"/blog?cat="}
+              href={`/blog?category=${category.title}`}
               className={cn(
                 "w-max rounded px-3 py-[4px] text-sm text-white",
-                card.tagColor,
+                color,
               )}
             >
-              {card.tag}
+              {category.title}
             </Link>
           );
         })}

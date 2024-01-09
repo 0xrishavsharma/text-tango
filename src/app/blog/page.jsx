@@ -13,7 +13,7 @@ const BlogPage = ({ searchParams }) => {
       </h1>
       <div className={cn("flex gap-12")}>
         <CardList page={page} category={category} />
-        <Menu />
+        <Menu category={category} />
       </div>
     </div>
   );

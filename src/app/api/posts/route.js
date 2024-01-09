@@ -10,7 +10,7 @@ export const GET = async (req) => {
   const POSTS_PER_PAGE = parseInt(process.env.POSTS_PER_PAGE) || 5;
 
   if (!pageNumber || pageNumber < 1) {
-    pageNumber = 1; // default to page 1 if invalid page number provided
+    pageNumber = 1;
   }
 
   const query = {
