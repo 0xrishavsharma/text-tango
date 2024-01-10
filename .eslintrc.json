@@ -1,4 +1,4 @@
 {
   "extends": "next/core-web-vitals"
-  // Include other ESLint configurations if needed
+  // "jam3/no-sanitizer-with-danger": [0, { "wrapperName": ["sanitizer"] }]
 }
