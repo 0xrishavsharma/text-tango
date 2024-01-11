@@ -74,28 +74,32 @@ so that's why we'll handle bg color in the layout.js file*/
 
 @media screen and (max-width: 1280px) {
   .navContainer,
-  .wrapper {
+  .wrapper,
+  .publish-button-wrapper {
     max-width: 1024px;
   }
 }
 
 @media screen and (max-width: 1024px) {
   .navContainer,
-  .wrapper {
+  .wrapper,
+  .publish-button-wrapper {
     max-width: 768px;
   }
 }
 
 @media screen and (max-width: 768px) {
   .navContainer,
-  .wrapper {
+  .wrapper,
+  .publish-button-wrapper {
     max-width: 640px;
   }
 }
 
 @media screen and (max-width: 640px) {
   .navContainer,
-  .wrapper {
+  .wrapper,
+  .publish-button-wrapper {
     max-width: 475px;
   }
 }

@@ -2,8 +2,10 @@ import React from "react";
 import styles from "./featured.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import useFetch from "@/hooks/useFetch";
 
-const Featured = () => {
+const Featured = ({ params }) => {
+  // const post = useFetch(`posts/${params.slug}`);
   return (
     <div className="mt-8">
       <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl">
@@ -33,6 +35,7 @@ const Featured = () => {
             elit. Odit, aspernatur!
           </p>
           <Link
+            // href={`/posts/${post.slug}`}
             href="/"
             className="w-max rounded bg-[var(--textColor)] px-3 py-2 text-sm text-[var(--bg)] lg:text-base xl:text-lg"
           >
