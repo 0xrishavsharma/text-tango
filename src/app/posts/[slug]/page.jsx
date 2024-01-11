@@ -43,6 +43,7 @@ const SinglePage = async ({ params }) => {
             <CommentSection
               content=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum
             adipisci aperiam voluptates et."
+              postSlug={slug}
             />
           </div>
         </div>

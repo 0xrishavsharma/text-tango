@@ -2,8 +2,13 @@ import Link from "next/link";
 import React from "react";
 import UserCard from "../userCard/UserCard";
 import Comment from "../comment/Comment";
+import useFetch from "@/hooks/useFetch";
 
-const CommentSection = ({ content }) => {
+const CommentSection = async ({ content, postSlug }) => {
+  console.log("postSlug", postSlug);
+  const comments = await useFetch(`comments/${postSlug}`);
+  console.log("comments", comments);
+
   const status = "authenticated";
   return (
     <div className="my-12">
@@ -21,11 +26,9 @@ const CommentSection = ({ content }) => {
       ) : (
         <Link href="/login">Login to comment</Link>
       )}
-      <Comment content={content} />
-      <Comment content={content} />
-      <Comment content={content} />
-      <Comment content={content} />
-      <Comment content={content} />
+      {Array.from({ length: 5 }).map((_, i) => {
+        return <Comment content={content} key={i} />;
+      })}
     </div>
   );
 };
