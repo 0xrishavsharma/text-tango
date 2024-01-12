@@ -33,7 +33,8 @@ const SinglePage = async ({ params }) => {
           </div>
         )}
       </div>
-      <div className="flex max-w-max gap-12">
+      {/* <div className="flex max-w-max gap-12"> */}
+      <div className="flex gap-12">
         <div className="mt-12 flex-[5]">
           <div
             className="flex flex-col"

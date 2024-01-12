@@ -1,14 +1,14 @@
 import Image from "next/image";
 import React from "react";
 
-const UserCard = ({ post }) => {
+const UserCard = ({ data }) => {
+  const post = data;
   const author = post?.author;
   return (
     <div className="flex items-center gap-4">
       <div className="relative h-12 w-12 rounded-full">
         {author?.image ? (
           <Image
-            // src={author?.image}
             src={author?.image || "/p1.jpeg"}
             className="rounded-full object-cover"
             fill
