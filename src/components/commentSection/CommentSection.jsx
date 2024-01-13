@@ -1,15 +1,35 @@
 "use client";
 import Link from "next/link";
-import UserCard from "../userCard/UserCard";
 import Comment from "../comment/Comment";
-import useFetch from "@/hooks/useFetch";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
 const CommentSection = ({ content, postSlug }) => {
-  // const [comments, setComments] = useState([]);
-  const data = useFetch(`comments?${postSlug}`);
-  const comments = Array.from(data) || [];
+  const [comments, setComments] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchComments = async () => {
+      setLoading(true);
+      const res = await fetch(
+        `http://localhost:3000/api/comments?postSlug=${postSlug}`,
+        {
+          cache: "no-cache",
+        },
+      );
+      if (!res.ok) {
+        const error = new Error("Something went wrong");
+        console.log("error", error);
+        throw error;
+      }
+      const data = await res.json();
+      return data;
+    };
+    fetchComments().then((data) => {
+      setComments(data);
+      setLoading(false);
+    });
+  }, [postSlug]);
   const { status } = useSession();
 
   console.log("comments", comments);
@@ -27,7 +47,12 @@ const CommentSection = ({ content, postSlug }) => {
           </button>
         </div>
       ) : (
-        <Link href="/login">Login to comment</Link>
+        <Link
+          href="/login"
+          className="rounded-sm border-2 border-white/35 bg-red-500 px-5 py-3 text-white"
+        >
+          Login to comment
+        </Link>
       )}
       {/* {Array.from({ length: 5 }).map((_, i) => {
         return <Comment content={content} key={i} />;
