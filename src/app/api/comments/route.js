@@ -38,7 +38,15 @@ export const POST = async (req) => {
       ),
     );
 
-  const body = res.json();
+  const body = await req.json();
+
+  if (!body.content)
+    return new NextResponse(
+      JSON.stringify(
+        { message: "Comment content is required!" },
+        { status: 400 },
+      ),
+    );
 
   try {
     const comment = await prisma.comment.create({

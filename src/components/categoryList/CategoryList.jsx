@@ -4,6 +4,7 @@ import Link from "next/link";
 import { cn } from "@/utils/utils.js";
 import { categoryColors } from "@/utils/utils";
 import useFetch from "@/hooks/useFetch";
+
 const CategoryList = async () => {
   const categories = await useFetch("categories");
 

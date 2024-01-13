@@ -6,62 +6,87 @@ import { useEffect, useState } from "react";
 import { Skeleton } from "../../ui/skeleton";
 import CommentSkeleton from "../commentSkeleton/CommentSkeleton";
 import useFetch from "@/hooks/useFetch";
+import { Button } from "@/components/ui/button";
+import { useQuery } from "react-query";
 
-const CommentSection = ({ content, postSlug }) => {
+const CommentSection = ({ postSlug }) => {
   const [comments, setComments] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [newComment, setNewComment] = useState(null);
-  const { data: response, error } = useFetch(
-    newComment ? "comments" : null,
-    newComment ? "POST" : null,
-    newComment ? { content: newComment, postSlug } : null,
+  const [loading, setLoading] = useState(false);
+
+  // useEffect(() => {
+  //   const fetchComments = async () => {
+  //     setLoading(true);
+  //     const res = await new Promise((resolve, reject) => {
+  //       setTimeout(async () => {
+  //         try {
+  //           const response = await fetch(
+  //             `http://localhost:3000/api/comments?postSlug=${postSlug}`,
+  //             {
+  //               cache: "no-cache",
+  //             },
+  //           );
+  //           resolve(response);
+  //         } catch (error) {
+  //           reject(error);
+  //         }
+  //       }, 10);
+  //     });
+  //     if (!res.ok) {
+  //       const error = new Error("Something went wrong");
+  //       console.log("error", error);
+  //       throw error;
+  //     }
+  //     const data = await res.json();
+  //     return data.sort((a, b) => {
+  //       return new Date(b.createdAt) - new Date(a.createdAt);
+  //     });
+  //   };
+  //   fetchComments().then((data) => {
+  //     setComments(data);
+  //     setLoading(false);
+  //   });
+  // }, [postSlug, ]);
+
+  // const { data, isLoading, refetch, error, isError } = useQuery(
+  //   `http/localhost:3000/api/comments?postSlug=${postSlug}`,
+  //   "GET",
+  //   null,
+  //   null,
+  // );
+  const { data, isLoading, refetch, error, isError } = useQuery(
+    `http/localhost:3000/api/comments?postSlug=${postSlug}`,
+    "GET",
+    null,
+    null,
   );
 
   useEffect(() => {
-    const fetchComments = async () => {
-      setLoading(true);
-      const res = await new Promise((resolve, reject) => {
-        setTimeout(async () => {
-          try {
-            const response = await fetch(
-              `http://localhost:3000/api/comments?postSlug=${postSlug}`,
-              {
-                cache: "no-cache",
-              },
-            );
-            resolve(response);
-          } catch (error) {
-            reject(error);
-          }
-        }, 10);
-      });
-      if (!res.ok) {
-        const error = new Error("Something went wrong");
-        console.log("error", error);
-        throw error;
-      }
-      const data = await res.json();
-      return data;
-    };
-    fetchComments().then((data) => {
+    if (data) {
       setComments(data);
-      setLoading(false);
+    }
+  }, [data]);
+
+  const postComment = async (content) => {
+    console.log("content", content);
+    const data = await fetch(`http://localhost:3000/api/comments`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        content,
+        postSlug,
+      }),
     });
-  }, [postSlug]);
+    console.log("New comment", data.body);
+    setComments((prev) => [...prev, data]);
 
-  useEffect(() => {
-    if (response) {
-      setComments((oldComments) => [...oldComments, response]);
-      setNewComment(null);
-    }
-    if (error) {
-      console.log("error", error);
-    }
-  }, [response, error]);
-
-  const postComment = async (comment) => {
-    setNewComment(comment);
+    // Refetch the comments after a new one is posted
+    refetch();
+    console.log("data", data);
   };
+
   const { status } = useSession();
   return (
     <div className="my-12">
@@ -72,10 +97,11 @@ const CommentSection = ({ content, postSlug }) => {
             <textarea
               className="placeholder:text-[family:'Inter'] w-full rounded-sm border-[1.5px] bg-softBg p-5 outline-none focus:border-themeRedColor"
               placeholder="write a comment..."
+              onChange={(e) => setNewComment(e.target.value)}
             />
             <button
               className="h-max cursor-pointer rounded-sm bg-themeRedColor px-8 py-3 font-semibold text-white"
-              onClick={(e) => postComment(e.target.value)}
+              onClick={(e) => postComment(newComment)}
             >
               Send
             </button>
@@ -89,15 +115,11 @@ const CommentSection = ({ content, postSlug }) => {
           </Link>
         )}
       </div>
-      {loading
+      {isLoading
         ? Array.from({ length: 5 }).map((id) => <CommentSkeleton key={id} />)
-        : comments?.map((comment) => {
+        : comments?.map((comment, _id) => {
             return (
-              <Comment
-                data={comment}
-                content={comment.content}
-                key={comment.id}
-              />
+              <Comment data={comment} content={comment.content} key={_id} />
             );
           })}
     </div>

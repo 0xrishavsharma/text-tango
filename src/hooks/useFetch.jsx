@@ -1,4 +1,6 @@
 import { targetUrl } from "@/utils/utils";
+// import { useQuery } from "react-query";
+import axios from "axios";
 
 const useFetch = async (path, method, headers, body) => {
   const options = {
@@ -9,6 +11,16 @@ const useFetch = async (path, method, headers, body) => {
     },
     body: body ? JSON.stringify(body) : null,
   };
+
+  // const { data, isLoading, refetch, error, isError } = useQuery({
+  //   queryKey: path,
+  //   queryFn: async () => {
+  //     const { data } = axios[method](`${targetUrl}/api/${path}`, options);
+  //     return data;
+  //   },
+  // });
+  // console.log("🚀 ~ useFetch ~ data:", data)
+  // return { data, isLoading, refetch, error, isError };
 
   const response = await fetch(`${targetUrl}/api/${path}`, options);
 
