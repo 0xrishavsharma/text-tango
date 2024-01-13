@@ -33,6 +33,9 @@ module.exports = {
         softBg: "var(--softBg)",
         softTextColor: "var(--softTextColor)",
         softestTextColor: "var(--softestTextColor)",
+        themeRedColor: "var(--themeRedColor)",
+
+        // Shadcn Config
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

@@ -6,7 +6,7 @@ const Button = ({ content, className, children, ...props }) => {
     <button
       {...props}
       className={cn(
-        "w-28 cursor-pointer rounded-sm bg-red-500 px-6 py-3 disabled:cursor-not-allowed disabled:bg-gray-300 ",
+        "w-28 cursor-pointer rounded-sm bg-themeRedColor px-6 py-3 disabled:cursor-not-allowed disabled:bg-gray-300 ",
         className,
       )}
     >

@@ -5,10 +5,17 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { Skeleton } from "../../ui/skeleton";
 import CommentSkeleton from "../commentSkeleton/CommentSkeleton";
+import useFetch from "@/hooks/useFetch";
 
 const CommentSection = ({ content, postSlug }) => {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [newComment, setNewComment] = useState(null);
+  const { data: response, error } = useFetch(
+    newComment ? "comments" : null,
+    newComment ? "POST" : null,
+    newComment ? { content: newComment, postSlug } : null,
+  );
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -41,6 +48,20 @@ const CommentSection = ({ content, postSlug }) => {
       setLoading(false);
     });
   }, [postSlug]);
+
+  useEffect(() => {
+    if (response) {
+      setComments((oldComments) => [...oldComments, response]);
+      setNewComment(null);
+    }
+    if (error) {
+      console.log("error", error);
+    }
+  }, [response, error]);
+
+  const postComment = async (comment) => {
+    setNewComment(comment);
+  };
   const { status } = useSession();
   return (
     <div className="my-12">
@@ -49,17 +70,20 @@ const CommentSection = ({ content, postSlug }) => {
         {status === "authenticated" ? (
           <div className="flex items-center justify-between gap-5">
             <textarea
-              className="placeholder:text-[family:'Inter'] w-full rounded-sm bg-softBg p-5"
+              className="placeholder:text-[family:'Inter'] w-full rounded-sm border-[1.5px] bg-softBg p-5 outline-none focus:border-themeRedColor"
               placeholder="write a comment..."
             />
-            <button className="h-max cursor-pointer rounded-sm bg-red-500 px-5 py-2 font-bold text-white ">
+            <button
+              className="h-max cursor-pointer rounded-sm bg-themeRedColor px-8 py-3 font-semibold text-white"
+              onClick={(e) => postComment(e.target.value)}
+            >
               Send
             </button>
           </div>
         ) : (
           <Link
             href="/login"
-            className="animate-blink rounded-sm border-2 border-[var(--text-color)] bg-red-500 px-5 py-3 text-white"
+            className="animate-blink rounded-sm border-2 border-[var(--text-color)] bg-themeRedColor px-5 py-3 text-white"
           >
             Login to comment
           </Link>

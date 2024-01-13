@@ -9,6 +9,9 @@
     --softBg: #f0f0f0;
     --softTextColor: #626262;
     --softestTextColor: #b3b3b1;
+    --themeRedColor: #ef4444;
+    --themeRedColorLight: #ef4444;
+    --themeRedColorLightest: #ef4444;
 
     /* Shadcn variables */
     --background: 0 0% 100%;

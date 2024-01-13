@@ -34,7 +34,7 @@ const Card = ({ key, post }) => {
         </p>
         <Link
           href={`/posts/${post.slug}`}
-          className="relative w-max text-sm font-semibold after:absolute after:-bottom-[2px] after:left-0 after:h-[1.7px] after:w-full after:bg-red-500"
+          className="relative w-max text-sm font-semibold after:absolute after:-bottom-[2px] after:left-0 after:h-[1.7px] after:w-full after:bg-themeRedColor"
         >
           Read More
         </Link>
