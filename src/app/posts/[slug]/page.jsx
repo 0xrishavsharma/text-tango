@@ -1,5 +1,5 @@
-import Comment from "@/components/comment/Comment";
-import CommentSection from "@/components/commentSection/CommentSection";
+import Comment from "@/components/commentComponents/comment/Comment";
+import CommentSection from "@/components/commentComponents/commentSection/CommentSection";
 import Menu from "@/components/menu/Menu";
 import UserCard from "@/components/userCard/UserCard";
 import Image from "next/image";
