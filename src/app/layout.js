@@ -5,6 +5,7 @@ import Navbar from "@/components/navbar/Navbar.jsx";
 import { ThemeContext, ThemeContextProvider } from "@/context/ThemeContext";
 import ThemeProvider from "@/providers/ThemeProvider";
 import AuthProvider from "@/providers/AuthProvider";
+import Providers from "@/utils/reactQuery/providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,19 +18,21 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AuthProvider>
-          <ThemeContextProvider>
-            <ThemeProvider>
-              <div className="relative min-h-screen bg-[--bg] text-[--textColor]">
-                <Navbar />
-                <div className="wrapper ">
-                  {children}
-                  <Footer />
+        <Providers>
+          <AuthProvider>
+            <ThemeContextProvider>
+              <ThemeProvider>
+                <div className="relative min-h-screen bg-[--bg] text-[--textColor]">
+                  <Navbar />
+                  <div className="wrapper ">
+                    {children}
+                    <Footer />
+                  </div>
                 </div>
-              </div>
-            </ThemeProvider>
-          </ThemeContextProvider>
-        </AuthProvider>
+              </ThemeProvider>
+            </ThemeContextProvider>
+          </AuthProvider>
+        </Providers>
       </body>
     </html>
   );

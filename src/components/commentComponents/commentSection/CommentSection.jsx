@@ -7,46 +7,43 @@ import { Skeleton } from "../../ui/skeleton";
 import CommentSkeleton from "../commentSkeleton/CommentSkeleton";
 import useFetch from "@/hooks/useFetch";
 import { Button } from "@/components/ui/button";
-import { useQuery } from "react-query";
+// import { useQuery } from "react-query";
 
 const CommentSection = ({ postSlug }) => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // useEffect(() => {
-  //   const fetchComments = async () => {
-  //     setLoading(true);
-  //     const res = await new Promise((resolve, reject) => {
-  //       setTimeout(async () => {
-  //         try {
-  //           const response = await fetch(
-  //             `http://localhost:3000/api/comments?postSlug=${postSlug}`,
-  //             {
-  //               cache: "no-cache",
-  //             },
-  //           );
-  //           resolve(response);
-  //         } catch (error) {
-  //           reject(error);
-  //         }
-  //       }, 10);
-  //     });
-  //     if (!res.ok) {
-  //       const error = new Error("Something went wrong");
-  //       console.log("error", error);
-  //       throw error;
-  //     }
-  //     const data = await res.json();
-  //     return data.sort((a, b) => {
-  //       return new Date(b.createdAt) - new Date(a.createdAt);
-  //     });
-  //   };
-  //   fetchComments().then((data) => {
-  //     setComments(data);
-  //     setLoading(false);
-  //   });
-  // }, [postSlug, ]);
+  useEffect(() => {
+    const fetchComments = async () => {
+      setLoading(true);
+      const res = await new Promise((resolve, reject) => {
+        setTimeout(async () => {
+          try {
+            const response = await fetch(`/api/comments?postSlug=${postSlug}`, {
+              cache: "no-cache",
+            });
+            resolve(response);
+          } catch (error) {
+            reject(error);
+          }
+        }, 10);
+      });
+      if (!res.ok) {
+        const error = new Error("Something went wrong");
+        console.log("error", error);
+        throw error;
+      }
+      const data = await res.json();
+      return data.sort((a, b) => {
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      });
+    };
+    fetchComments().then((data) => {
+      setComments(data);
+      setLoading(false);
+    });
+  }, [postSlug]);
 
   // const { data, isLoading, refetch, error, isError } = useQuery(
   //   `http/localhost:3000/api/comments?postSlug=${postSlug}`,
@@ -54,22 +51,22 @@ const CommentSection = ({ postSlug }) => {
   //   null,
   //   null,
   // );
-  const { data, isLoading, refetch, error, isError } = useQuery(
-    `http/localhost:3000/api/comments?postSlug=${postSlug}`,
-    "GET",
-    null,
-    null,
-  );
+  // const { data, isLoading, refetch, error, isError } = useQuery(
+  //   `http/localhost:3000/api/comments?postSlug=${postSlug}`,
+  //   "GET",
+  //   null,
+  //   null,
+  // );
 
-  useEffect(() => {
-    if (data) {
-      setComments(data);
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (data) {
+  //     setComments(data);
+  //   }
+  // }, [data]);
 
-  const postComment = async (content) => {
+  const postComment = async (content, path) => {
     console.log("content", content);
-    const data = await fetch(`http://localhost:3000/api/comments`, {
+    const data = await fetch(`api/comments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -99,12 +96,12 @@ const CommentSection = ({ postSlug }) => {
               placeholder="write a comment..."
               onChange={(e) => setNewComment(e.target.value)}
             />
-            <button
+            <Button
               className="h-max cursor-pointer rounded-sm bg-themeRedColor px-8 py-3 font-semibold text-white"
               onClick={(e) => postComment(newComment)}
             >
               Send
-            </button>
+            </Button>
           </div>
         ) : (
           <Link
@@ -115,7 +112,7 @@ const CommentSection = ({ postSlug }) => {
           </Link>
         )}
       </div>
-      {isLoading
+      {loading
         ? Array.from({ length: 5 }).map((id) => <CommentSkeleton key={id} />)
         : comments?.map((comment, _id) => {
             return (
