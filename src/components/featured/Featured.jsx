@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./featured.module.css";
 import Image from "next/image";
 import Link from "next/link";
-import useFetch from "@/hooks/useFetch";
+import useFetch from "@/utils/lib/apiRequest";
 
 const Featured = ({ params }) => {
   // const post = useFetch(`posts/${params.slug}`);

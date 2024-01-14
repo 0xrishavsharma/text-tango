@@ -2,7 +2,7 @@ import { cn, smallCardData } from "@/utils/utils";
 import Link from "next/link";
 import React from "react";
 import { getCategories, categoryColors } from "@/utils/utils";
-import useFetch from "@/hooks/useFetch";
+import useFetch from "@/utils/lib/apiRequest";
 
 const MenuCategories = async ({ type, category }) => {
   const categories = await useFetch("categories");

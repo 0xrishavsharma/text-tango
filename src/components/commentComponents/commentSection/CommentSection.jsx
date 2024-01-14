@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { Skeleton } from "../../ui/skeleton";
 import CommentSkeleton from "../commentSkeleton/CommentSkeleton";
-import useFetch from "@/hooks/useFetch";
+import useFetch from "@/utils/lib/apiRequest";
 import { Button } from "@/components/ui/button";
 // import { useQuery } from "react-query";
 

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/utils/utils.js";
 import { categoryColors } from "@/utils/utils";
-import useFetch from "@/hooks/useFetch";
+import useFetch from "@/utils/lib/apiRequest";
 
 const CategoryList = async () => {
   const categories = await useFetch("categories");

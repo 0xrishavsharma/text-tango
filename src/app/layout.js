@@ -5,7 +5,7 @@ import Navbar from "@/components/navbar/Navbar.jsx";
 import { ThemeContext, ThemeContextProvider } from "@/context/ThemeContext";
 import ThemeProvider from "@/providers/ThemeProvider";
 import AuthProvider from "@/providers/AuthProvider";
-import Providers from "@/utils/reactQuery/providers";
+import ReactQueryClientProvider from "@/utils/ReactQuery/ReactQueryClientProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Providers>
+        <ReactQueryClientProvider>
           <AuthProvider>
             <ThemeContextProvider>
               <ThemeProvider>
@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
               </ThemeProvider>
             </ThemeContextProvider>
           </AuthProvider>
-        </Providers>
+        </ReactQueryClientProvider>
       </body>
     </html>
   );

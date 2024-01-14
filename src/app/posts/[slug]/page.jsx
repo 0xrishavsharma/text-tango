@@ -5,7 +5,7 @@ import UserCard from "@/components/userCard/UserCard";
 import Image from "next/image";
 import React from "react";
 import DOMPurify from "isomorphic-dompurify";
-import useFetch from "@/hooks/useFetch";
+import useFetch from "@/utils/lib/apiRequest";
 
 const SinglePage = async ({ params }) => {
   const { slug } = params;
