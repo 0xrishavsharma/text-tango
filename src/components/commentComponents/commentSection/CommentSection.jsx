@@ -7,81 +7,81 @@ import { Skeleton } from "../../ui/skeleton";
 import CommentSkeleton from "../commentSkeleton/CommentSkeleton";
 import useFetch from "@/utils/lib/apiRequest";
 import { Button } from "@/components/ui/button";
-// import { useQuery } from "react-query";
+import ApiRequest from "@/utils/lib/apiRequest";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 const CommentSection = ({ postSlug }) => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const fetchComments = async () => {
-      setLoading(true);
-      const res = await new Promise((resolve, reject) => {
-        setTimeout(async () => {
-          try {
-            const response = await fetch(`/api/comments?postSlug=${postSlug}`, {
-              cache: "no-cache",
-            });
-            resolve(response);
-          } catch (error) {
-            reject(error);
-          }
-        }, 10);
-      });
-      if (!res.ok) {
-        const error = new Error("Something went wrong");
-        console.log("error", error);
-        throw error;
+  const { data, isLoading, refetch, error, isError } = useQuery({
+    queryKey: ["postSlug"],
+    queryFn: async () => {
+      const response = await axios.get(`/api/comments?postSlug=${postSlug}`);
+      if (response.status !== 200) {
+        throw new Error("Error fetching comments");
       }
-      const data = await res.json();
-      return data.sort((a, b) => {
-        return new Date(b.createdAt) - new Date(a.createdAt);
-      });
-    };
-    fetchComments().then((data) => {
-      setComments(data);
-      setLoading(false);
-    });
-  }, [postSlug]);
-
-  // const { data, isLoading, refetch, error, isError } = useQuery(
-  //   `http/localhost:3000/api/comments?postSlug=${postSlug}`,
-  //   "GET",
-  //   null,
-  //   null,
-  // );
-  // const { data, isLoading, refetch, error, isError } = useQuery(
-  //   `http/localhost:3000/api/comments?postSlug=${postSlug}`,
-  //   "GET",
-  //   null,
-  //   null,
-  // );
+      return response.data;
+    },
+  });
 
   // useEffect(() => {
-  //   if (data) {
+  //   const fetchComments = async () => {
+  //     setLoading(true);
+  //     const res = await new Promise((resolve, reject) => {
+  //       setTimeout(async () => {
+  //         try {
+  //           const response = await fetch(`/api/comments?postSlug=${postSlug}`, {
+  //             cache: "no-cache",
+  //           });
+  //           resolve(response);
+  //         } catch (error) {
+  //           reject(error);
+  //         }
+  //       }, 10);
+  //     });
+  //     if (!res.ok) {
+  //       const error = new Error("Something went wrong");
+  //       console.log("error", error);
+  //       throw error;
+  //     }
+  //     const data = await res.json();
+  //     return data.sort((a, b) => {
+  //       return new Date(b.createdAt) - new Date(a.createdAt);
+  //     });
+  //   };
+  //   fetchComments().then((data) => {
   //     setComments(data);
-  //   }
-  // }, [data]);
+  //     setLoading(false);
+  //   });
+  // }, [postSlug]);
+
+  // const { data } = ApiRequest(`comments?postSlug=${postSlug}`, "GET", null, null);
+  // console.log("data", data)
 
   const postComment = async (content, path) => {
     console.log("content", content);
-    const data = await fetch(`api/comments`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        content,
-        postSlug,
-      }),
-    });
-    console.log("New comment", data.body);
-    setComments((prev) => [...prev, data]);
-
-    // Refetch the comments after a new one is posted
-    refetch();
-    console.log("data", data);
+    try {
+      const data = await fetch(`/api/comments`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          content,
+          postSlug,
+        }),
+      });
+      console.log("New comment", data.body);
+      setComments((prev) => [...prev, data]);
+      refetch();
+      console.log("comments", comments);
+      console.log("data", data);
+    } catch (error) {
+      console.log("error", error);
+    }
   };
 
   const { status } = useSession();
@@ -112,13 +112,17 @@ const CommentSection = ({ postSlug }) => {
           </Link>
         )}
       </div>
-      {loading
+      {isLoading
         ? Array.from({ length: 5 }).map((id) => <CommentSkeleton key={id} />)
-        : comments?.map((comment, _id) => {
-            return (
-              <Comment data={comment} content={comment.content} key={_id} />
-            );
-          })}
+        : data
+            .sort((a, b) => {
+              return new Date(b.createdAt) - new Date(a.createdAt);
+            })
+            ?.map((comment, _id) => {
+              return (
+                <Comment data={comment} content={comment.content} key={_id} />
+              );
+            })}
     </div>
   );
 };

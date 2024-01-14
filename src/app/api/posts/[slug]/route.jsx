@@ -23,3 +23,36 @@ export const GET = async (req, { params }) => {
     });
   }
 };
+
+// CREATE A POST
+export const POST = async (req) => {
+  const session = await getAuthSessions();
+  if (!session)
+    return new NextResponse(
+      JSON.stringify(
+        { message: "You need to be logged in to comment!" },
+        { status: 401 },
+      ),
+    );
+
+  const body = await req.json();
+
+  if (!body.content)
+    return new NextResponse(
+      JSON.stringify({ message: "Post content is required!" }, { status: 400 }),
+    );
+
+  try {
+    const post = await prisma.post.create({
+      data: { ...body, authorEmail: session.user.email },
+      include: { author: true },
+    });
+
+    return new NextResponse(JSON.stringify(post, { status: 201 }));
+  } catch (err) {
+    console.log(err);
+    return new NextResponse(
+      JSON.stringify({ message: "Something went wrong!" }, { status: 500 }),
+    );
+  }
+};

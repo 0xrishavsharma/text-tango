@@ -2,7 +2,7 @@ import { targetUrl } from "@/utils/utils";
 // import { useQuery } from "react-query";
 import axios from "axios";
 
-const useFetch = async (path, method, headers, body) => {
+const ApiRequest = async (path, method, headers, body) => {
   const options = {
     method,
     headers: {
@@ -34,4 +34,4 @@ const useFetch = async (path, method, headers, body) => {
   return data;
 };
 
-export default useFetch;
+export default ApiRequest;

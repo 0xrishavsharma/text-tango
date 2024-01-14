@@ -7,7 +7,8 @@ import { motion } from "framer-motion";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
-const ReactQuill = dynamic(import("react-quill"), { ssr: false });
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+console.log("ReactQuill", ReactQuill);
 
 const WritePage = () => {
   const [isOpen, setIsOpen] = useState();
@@ -19,7 +20,7 @@ const WritePage = () => {
     return <div>Loading...</div>;
   }
   if (status === "unauthenticated") {
-    pass("/login");
+    push("/login");
   }
 
   const editorVariants = {
