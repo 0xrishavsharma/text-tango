@@ -47,7 +47,7 @@ const AuthLinks = () => {
           >
             <div className="rounded-full sm:border-[0.4px] sm:dark:border-white/40">
               <Image
-                src={data?.user?.image}
+                src={data?.user.image}
                 className="rounded-full"
                 width={30}
                 height={30}
