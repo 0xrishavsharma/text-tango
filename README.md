@@ -1,10 +1,6 @@
 # Blog Website
 
-This is a blog website built using Next.js.
-
-## Project Overview
-
-This project is a fully functional blog website where users can read, write, and comment on blog posts. It's built using Next.js, a popular React framework for building web applications.
+This is a blog website built using Next.js with its SSR and SSG capabilities. It uses Prisma as an ORM and Next-Auth for authentication. It also uses Firebase for image storage and Framer Motion for animations.
 
 ## System Requirements
 
@@ -31,8 +27,16 @@ This project is a fully functional blog website where users can read, write, and
 This project uses a number of technologies to work properly:
 
 - **Next.js**: A popular React framework for building web applications.
-- **React.js**: A JavaScript library for building user interfaces.
-- **Node.js**: A JavaScript runtime built on Chrome's V8 JavaScript engine.
+- **Tailwind CSS**: A utility-first CSS framework for rapidly building custom user interfaces.
+- **Prisma**: An open source database independent ORM.
+- **React-Quill**: A React component for the Quill Rich Text Editor.
+- **Framer Motion**: A production-ready library for adding animations.
+- **React-Icons**: A collection of popular icons.
+- **Next-Auth**: An authentication library for Next.js.
+- **Prettier**: An opinionated code formatter.
+- **ESLint**: A pluggable and configurable linter tool for identifying and reporting on patterns in JavaScript.
+- **Husky**: A tool that makes it easy to use githooks as if they are npm scripts.
+
 - **Yarn**: A fast, reliable, and secure dependency management tool.
 - **Firebase**: A platform developed by Google for creating mobile and web applications. It is used in this project for image storage.
 - **Git**: A free and open source distributed version control system.
@@ -53,6 +57,12 @@ For more information or for reporting issues, feel free to create a pull request
 - LinkedIn: [Rishav Sharma](https://www.linkedin.com/in/0xrishavsharma/)
 - Twitter: [@0xrishavsharma](https://twitter.com/Y0xrishavsharma)
 
-## License
+## Acknowledgements
 
-This project is licensed under the terms of the MIT license.
+This project was built while following the tutorial [Full-Stack Blog App Tutorial ](https://www.youtube.com/watch?v=DpYE5zPDRVQ&t=2366s) from [Lama Dev's](https://www.youtube.com/@LamaDev) Youtube channel. I would like to express my gratitude to [Safak](https://github.com/safak) for providing such a comprehensive and easy-to-follow video on this topic.
+
+If you're interested in building a similar project, I highly recommend checking out this tutorial.
+
+## Usage
+
+This code is free to use by anyone for any purpose, and it comes with no warranties. No need for attribution or any restrictions.
