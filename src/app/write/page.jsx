@@ -83,18 +83,34 @@ const WritePage = () => {
   };
 
   console.log("File", file);
+  console.log("Article Info", articleInfo);
+
+  const slugify = (str) =>
+    str
+      .toLowerCase()
+      .trim()
+      .replace(/[^\w\s-]/g, "")
+      .replace(/[\s_-]+/g, "-")
+      .replace(/^-+|-+$/g, "");
 
   const handleSubmit = async () => {
-    const res = await fetch("/api/posts", {
-      method: "POST",
-      body: JSON.stringify({ article: articleInfo }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await res.json();
-    console.log(data);
-    push(`/article/${data.article.slug}`);
+    try {
+      const res = await fetch("/api/posts", {
+        method: "POST",
+        body: JSON.stringify({
+          title: articleInfo.title,
+          content: articleInfo.body,
+          img: articleInfo.media,
+          categorySlug: slugify(articleInfo.title),
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log("res", res);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -105,6 +121,7 @@ const WritePage = () => {
             className="padding-12 border-none bg-transparent text-6xl outline-none placeholder:text-softestTextColor"
             type="text"
             placeholder="Title"
+            value={articleInfo.title}
             onChange={(e) =>
               setArticleInfo({ ...articleInfo, title: e.target.value })
             }
@@ -169,7 +186,7 @@ const WritePage = () => {
               className="w-full "
               theme="bubble"
               value={articleInfo.body}
-              onChange={setArticleInfo.body}
+              onChange={(e) => setArticleInfo({ ...articleInfo, body: e })}
               placeholder="Let's write something..."
             />
           </div>
