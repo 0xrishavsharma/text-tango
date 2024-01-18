@@ -17,6 +17,9 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
+import { app } from "@/utils/firebase";
+
+const storage = getStorage(app);
 
 const WritePage = () => {
   const [isOpen, setIsOpen] = useState();
@@ -26,11 +29,11 @@ const WritePage = () => {
     title: "",
     description: "",
     body: "",
+    media: "",
     tagList: [],
   });
 
   useEffect(() => {
-    const storage = getStorage(app);
     const upload = () => {
       const name = new Date().getTime() + file.name;
       const storageRef = ref(storage, name);
@@ -55,14 +58,15 @@ const WritePage = () => {
         (error) => {},
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            setMedia(downloadURL);
+            console.log("File available at", downloadURL);
+            setArticleInfo({ ...articleInfo, media: downloadURL });
           });
         },
       );
     };
 
     file && upload();
-  }, [file]);
+  }, [file, articleInfo]);
 
   const { status } = useSession();
   const { push } = useRouter();
@@ -79,6 +83,19 @@ const WritePage = () => {
   };
 
   console.log("File", file);
+
+  const handleSubmit = async () => {
+    const res = await fetch("/api/posts", {
+      method: "POST",
+      body: JSON.stringify({ article: articleInfo }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    console.log(data);
+    push(`/article/${data.article.slug}`);
+  };
 
   return (
     <div className="relative">
@@ -151,15 +168,18 @@ const WritePage = () => {
             <ReactQuill
               className="w-full "
               theme="bubble"
-              value={value}
-              onChange={setValue}
+              value={articleInfo.body}
+              onChange={setArticleInfo.body}
               placeholder="Let's write something..."
             />
           </div>
         </div>
       </div>
       <div className="publish-button-wrapper absolute bottom-24  flex max-w-[1336px] justify-end">
-        <button className="publish-button rounded-full border-none bg-themeRedColor px-5 py-2 text-white">
+        <button
+          className="publish-button rounded-full border-none bg-themeRedColor px-5 py-2 text-white"
+          onClick={handleSubmit}
+        >
           Publish
         </button>
       </div>
