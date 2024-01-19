@@ -25,13 +25,9 @@ const WritePage = () => {
   const [isOpen, setIsOpen] = useState();
   const [value, setValue] = useState("");
   const [file, setFile] = useState(null);
-  const [articleInfo, setArticleInfo] = useState({
-    title: "",
-    description: "",
-    body: "",
-    media: "",
-    tagList: [],
-  });
+  const [media, setMedia] = useState("");
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
 
   useEffect(() => {
     const upload = () => {
@@ -59,14 +55,14 @@ const WritePage = () => {
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             console.log("File available at", downloadURL);
-            setArticleInfo({ ...articleInfo, media: downloadURL });
+            setMedia(downloadURL);
           });
         },
       );
     };
 
     file && upload();
-  }, [file, articleInfo]);
+  }, [file]);
 
   const { status } = useSession();
   const { push } = useRouter();
@@ -83,7 +79,6 @@ const WritePage = () => {
   };
 
   console.log("File", file);
-  console.log("Article Info", articleInfo);
 
   const slugify = (str) =>
     str
@@ -98,10 +93,10 @@ const WritePage = () => {
       const res = await fetch("/api/posts", {
         method: "POST",
         body: JSON.stringify({
-          title: articleInfo.title,
-          content: articleInfo.body,
-          img: articleInfo.media,
-          categorySlug: slugify(articleInfo.title),
+          title: title,
+          content: value,
+          img: media,
+          slug: slugify(title),
         }),
         headers: {
           "Content-Type": "application/json",
@@ -121,10 +116,8 @@ const WritePage = () => {
             className="padding-12 border-none bg-transparent text-6xl outline-none placeholder:text-softestTextColor"
             type="text"
             placeholder="Title"
-            value={articleInfo.title}
-            onChange={(e) =>
-              setArticleInfo({ ...articleInfo, title: e.target.value })
-            }
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
           <div className="relative flex items-center gap-8">
             <button
@@ -185,8 +178,8 @@ const WritePage = () => {
             <ReactQuill
               className="w-full "
               theme="bubble"
-              value={articleInfo.body}
-              onChange={(e) => setArticleInfo({ ...articleInfo, body: e })}
+              value={value}
+              onChange={setValue}
               placeholder="Let's write something..."
             />
           </div>
