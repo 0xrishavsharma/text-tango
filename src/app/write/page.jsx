@@ -11,6 +11,8 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import { ImImage } from "react-icons/im";
 import { LiaFileUploadSolid } from "react-icons/lia";
 import { RiVideoUploadLine } from "react-icons/ri";
+import { PiCircleNotch } from "react-icons/pi";
+
 import {
   getStorage,
   ref,
@@ -18,7 +20,6 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import { app } from "@/utils/firebase";
-import { set } from "husky";
 
 const storage = getStorage(app);
 
@@ -26,47 +27,51 @@ const WritePage = () => {
   const [isOpen, setIsOpen] = useState();
   const [value, setValue] = useState("");
   const [file, setFile] = useState(null);
-  const [fileUpload, setFileUpload] = useState(null);
+  const [fileUpload, setFileUpload] = useState("running");
   const [media, setMedia] = useState("");
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
-  useEffect(() => {
-    const upload = () => {
-      const name = new Date().getTime() + file.name;
-      const storageRef = ref(storage, name);
+  // useEffect(() => {
+  //   const upload = () => {
+  //     const name = new Date().getTime() + file.name;
+  //     const storageRef = ref(storage, name);
 
-      const uploadTask = uploadBytesResumable(storageRef, file);
+  //     const uploadTask = uploadBytesResumable(storageRef, file);
 
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload is " + progress + "% done");
-          switch (snapshot.state) {
-            case "paused":
-              console.log("Upload is paused");
-              setFileUpload("paused");
-              break;
-            case "running":
-              console.log("Upload is running");
-              setFileUpload("running");
-              break;
-          }
-        },
-        (error) => {},
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            console.log("File available at", downloadURL);
-            setMedia(downloadURL);
-          });
-        },
-      );
-    };
-    console.log("File", file);
-    file && upload();
-  }, [file]);
+  //     uploadTask.on(
+  //       "state_changed",
+  //       (snapshot) => {
+  //         const progress =
+  //           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+  //         console.log("Upload is " + progress + "% done");
+  //         switch (snapshot.state) {
+  //           case "paused":
+  //             console.log("Upload is paused");
+  //             setFileUpload("paused");
+  //             break;
+  //           case "running":
+  //             console.log("Upload is running");
+  //             setFileUpload("running");
+  //             break;
+  //         }
+  //         setFileUpload(snapshot.state);
+  //       },
+
+  //       (error) => {},
+  //       () => {
+  //         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+  //           console.log("File available at", downloadURL);
+  //           setMedia(downloadURL);
+  //           setFileUpload(null);
+  //         });
+  //       },
+  //     );
+  //   };
+  //   console.log("File", file);
+  //   file && upload();
+  //   setFileUpload(null);
+  // }, [file]);
 
   const { status } = useSession();
   const { push } = useRouter();
@@ -126,27 +131,33 @@ const WritePage = () => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-          {fileUpload === "running" && (
+          {fileUpload === "running" ? (
+            <div className="flex items-center gap-2 text-3xl">
+              {/* <div className="h-4 w-4 animate-bounce rounded-full bg-themeRedColor"></div> */}
+              <PiCircleNotch className="animate-spin stroke-[1.2rem] text-green-400" />
+              <p className="duration-[1s] animate-pulse text-green-400 ">
+                Uploading file...
+              </p>
+            </div>
+          ) : fileUpload === "paused" ? (
             <div className="flex items-center gap-2">
               <div className="h-4 w-4 animate-bounce rounded-full bg-themeRedColor"></div>
-              <p className="text-themeRedColor">Uploading...</p>
+              <p className="animate-ping text-green-400 text-themeRedColor">
+                Paused...
+              </p>
             </div>
-          )}
-          {fileUpload === "paused" && (
-            <div className="flex items-center gap-2">
-              <div className="h-4 w-4 animate-bounce rounded-full bg-themeRedColor"></div>
-              <p className="text-themeRedColor">Paused...</p>
-            </div>
-          )}
-          {file && (
-            <div className="relative flex h-[500px] w-full bg-cover">
-              <Image
-                src={URL.createObjectURL(file)}
-                alt=""
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
+          ) : (
+            fileUpload === null &&
+            file && (
+              <div className="relative flex h-[500px] w-full bg-cover">
+                <Image
+                  src={URL.createObjectURL(file)}
+                  alt=""
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </div>
+            )
           )}
           <div className="relative flex items-center gap-8">
             <button
