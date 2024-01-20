@@ -18,6 +18,7 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import { app } from "@/utils/firebase";
+import { set } from "husky";
 
 const storage = getStorage(app);
 
@@ -25,6 +26,7 @@ const WritePage = () => {
   const [isOpen, setIsOpen] = useState();
   const [value, setValue] = useState("");
   const [file, setFile] = useState(null);
+  const [fileUpload, setFileUpload] = useState(null);
   const [media, setMedia] = useState("");
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
@@ -45,9 +47,11 @@ const WritePage = () => {
           switch (snapshot.state) {
             case "paused":
               console.log("Upload is paused");
+              setFileUpload("paused");
               break;
             case "running":
               console.log("Upload is running");
+              setFileUpload("running");
               break;
           }
         },
@@ -60,7 +64,7 @@ const WritePage = () => {
         },
       );
     };
-
+    console.log("File", file);
     file && upload();
   }, [file]);
 
@@ -77,8 +81,6 @@ const WritePage = () => {
     open: { opacity: 1, x: 0 },
     closed: { opacity: 0, x: "-200%" },
   };
-
-  console.log("File", file);
 
   const slugify = (str) =>
     str
@@ -108,10 +110,15 @@ const WritePage = () => {
     }
   };
 
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    setFile(file);
+  };
+
   return (
-    <div className="relative">
+    <div className="relative my-20">
       <div>
-        <div className="my-20 flex h-[700px] flex-col gap-12">
+        <div className="my-10 flex min-h-[700px] flex-col gap-12">
           <input
             className="padding-12 border-none bg-transparent text-6xl outline-none placeholder:text-softestTextColor"
             type="text"
@@ -119,6 +126,28 @@ const WritePage = () => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
+          {fileUpload === "running" && (
+            <div className="flex items-center gap-2">
+              <div className="h-4 w-4 animate-bounce rounded-full bg-themeRedColor"></div>
+              <p className="text-themeRedColor">Uploading...</p>
+            </div>
+          )}
+          {fileUpload === "paused" && (
+            <div className="flex items-center gap-2">
+              <div className="h-4 w-4 animate-bounce rounded-full bg-themeRedColor"></div>
+              <p className="text-themeRedColor">Paused...</p>
+            </div>
+          )}
+          {file && (
+            <div className="relative flex h-[500px] w-full bg-cover">
+              <Image
+                src={URL.createObjectURL(file)}
+                alt=""
+                layout="fill"
+                objectFit="cover"
+              />
+            </div>
+          )}
           <div className="relative flex items-center gap-8">
             <button
               className={cn(
@@ -144,12 +173,14 @@ const WritePage = () => {
                   <input
                     type="file"
                     id="imageUpload"
-                    onChange={(e) => setFile(e.target.files[0])}
+                    onChange={(e) => {
+                      handleFileUpload(e);
+                    }}
                     className="hidden"
                   />
                   <button
                     className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border-[1.5px] border-themeRedColor"
-                    onClick={() => setIsOpen(!isOpen)}
+                    // onClick={() => setIsOpen(!isOpen)}
                   >
                     <label htmlFor="imageUpload" className="cursor-pointer">
                       {/* <Image src="/image.png" alt="" width={16} height={16} /> */}
@@ -160,14 +191,14 @@ const WritePage = () => {
                   </button>
                   <button
                     className="flex h-10 w-10 items-center justify-center rounded-full border-[1.5px] border-themeRedColor p-1"
-                    onClick={() => setIsOpen(!isOpen)}
+                    // onClick={() => setIsOpen(!isOpen)}
                   >
                     {/* <Image src="/external.png" alt="" width={16} height={16} /> */}
                     <LiaFileUploadSolid className="h-5 w-5 stroke-[0.1] text-themeRedColor opacity-80 " />
                   </button>
                   <button
                     className="flex h-10 w-10 items-center justify-center rounded-full border-[1.5px] border-themeRedColor p-1"
-                    onClick={() => setIsOpen(!isOpen)}
+                    // onClick={() => setIsOpen(!isOpen)}
                   >
                     {/* <Image src="/video.png" alt="" width={16} height={16} /> */}
                     <RiVideoUploadLine className="h-5 w-5 stroke-[0.1] text-themeRedColor opacity-80 " />
@@ -185,7 +216,7 @@ const WritePage = () => {
           </div>
         </div>
       </div>
-      <div className="publish-button-wrapper absolute bottom-24  flex max-w-[1336px] justify-end">
+      <div className="publish-button-wrapper mt-8 flex max-w-[1336px] items-start justify-start">
         <button
           className="publish-button rounded-full border-none bg-themeRedColor px-5 py-2 text-white"
           onClick={handleSubmit}
