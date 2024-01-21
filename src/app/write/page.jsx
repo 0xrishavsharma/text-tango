@@ -12,6 +12,7 @@ import { ImImage } from "react-icons/im";
 import { LiaFileUploadSolid } from "react-icons/lia";
 import { RiVideoUploadLine } from "react-icons/ri";
 import { PiCircleNotch } from "react-icons/pi";
+import { AiOutlinePlus } from "react-icons/ai";
 
 import {
   getStorage,
@@ -27,51 +28,52 @@ const WritePage = () => {
   const [isOpen, setIsOpen] = useState();
   const [value, setValue] = useState("");
   const [file, setFile] = useState(null);
-  const [fileUpload, setFileUpload] = useState("running");
+  const [fileUpload, setFileUpload] = useState("");
   const [media, setMedia] = useState("");
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
-  // useEffect(() => {
-  //   const upload = () => {
-  //     const name = new Date().getTime() + file.name;
-  //     const storageRef = ref(storage, name);
+  useEffect(() => {
+    const upload = () => {
+      const name = new Date().getTime() + file.name;
+      const storageRef = ref(storage, name);
 
-  //     const uploadTask = uploadBytesResumable(storageRef, file);
+      const uploadTask = uploadBytesResumable(storageRef, file);
 
-  //     uploadTask.on(
-  //       "state_changed",
-  //       (snapshot) => {
-  //         const progress =
-  //           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-  //         console.log("Upload is " + progress + "% done");
-  //         switch (snapshot.state) {
-  //           case "paused":
-  //             console.log("Upload is paused");
-  //             setFileUpload("paused");
-  //             break;
-  //           case "running":
-  //             console.log("Upload is running");
-  //             setFileUpload("running");
-  //             break;
-  //         }
-  //         setFileUpload(snapshot.state);
-  //       },
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              setFileUpload("paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              setFileUpload("running");
+              break;
+          }
+          setFileUpload(snapshot.state);
+        },
 
-  //       (error) => {},
-  //       () => {
-  //         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-  //           console.log("File available at", downloadURL);
-  //           setMedia(downloadURL);
-  //           setFileUpload(null);
-  //         });
-  //       },
-  //     );
-  //   };
-  //   console.log("File", file);
-  //   file && upload();
-  //   setFileUpload(null);
-  // }, [file]);
+        (error) => {},
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log("File available at", downloadURL);
+            setMedia(downloadURL);
+            localStorage.setItem("file", downloadURL);
+            setFileUpload(null);
+          });
+        },
+      );
+    };
+    console.log("File", file);
+    file && upload();
+    setFileUpload(null);
+  }, [file]);
 
   const { status } = useSession();
   const { push } = useRouter();
@@ -97,7 +99,7 @@ const WritePage = () => {
 
   const handleSubmit = async () => {
     try {
-      const res = await fetch("/api/posts", {
+      const res = await fetch("http://localhost:3000/api/posts", {
         method: "POST",
         body: JSON.stringify({
           title: title,
@@ -132,7 +134,7 @@ const WritePage = () => {
             onChange={(e) => setTitle(e.target.value)}
           />
           {fileUpload === "running" ? (
-            <div className="flex items-center gap-2 text-3xl">
+            <div className="flex items-center gap-2 text-xl">
               {/* <div className="h-4 w-4 animate-bounce rounded-full bg-themeRedColor"></div> */}
               <PiCircleNotch className="animate-spin stroke-[1.2rem] text-green-400" />
               <p className="duration-[1s] animate-pulse text-green-400 ">
@@ -162,13 +164,16 @@ const WritePage = () => {
           <div className="relative flex items-center gap-8">
             <button
               className={cn(
-                isOpen ? " border-softTextColor" : "border-themeRedColor",
+                isOpen
+                  ? "rotate-45 border-softTextColor"
+                  : "border-themeRedColor",
+                // "border-softTextColor",
                 "flex h-10 w-10 items-center justify-center rounded-full border-[1.5px] transition-all duration-300",
               )}
               onClick={() => setIsOpen(!isOpen)}
             >
               <motion.div animate={{ rotate: [0, 180, 0] }}>
-                <Image src="/plus.png" alt="" width={16} height={16} />
+                <AiOutlinePlus className="stroke-[1rem] text-2xl" />
               </motion.div>
             </button>
             <AnimatePresence>
@@ -194,24 +199,15 @@ const WritePage = () => {
                     // onClick={() => setIsOpen(!isOpen)}
                   >
                     <label htmlFor="imageUpload" className="cursor-pointer">
-                      {/* <Image src="/image.png" alt="" width={16} height={16} /> */}
                       <motion.div>
                         <ImImage className="h-4 w-4 stroke-[0.1] text-themeRedColor opacity-80 " />
                       </motion.div>
                     </label>
                   </button>
-                  <button
-                    className="flex h-10 w-10 items-center justify-center rounded-full border-[1.5px] border-themeRedColor p-1"
-                    // onClick={() => setIsOpen(!isOpen)}
-                  >
-                    {/* <Image src="/external.png" alt="" width={16} height={16} /> */}
+                  <button className="flex h-10 w-10 items-center justify-center rounded-full border-[1.5px] border-themeRedColor p-1">
                     <LiaFileUploadSolid className="h-5 w-5 stroke-[0.1] text-themeRedColor opacity-80 " />
                   </button>
-                  <button
-                    className="flex h-10 w-10 items-center justify-center rounded-full border-[1.5px] border-themeRedColor p-1"
-                    // onClick={() => setIsOpen(!isOpen)}
-                  >
-                    {/* <Image src="/video.png" alt="" width={16} height={16} /> */}
+                  <button className="flex h-10 w-10 items-center justify-center rounded-full border-[1.5px] border-themeRedColor p-1">
                     <RiVideoUploadLine className="h-5 w-5 stroke-[0.1] text-themeRedColor opacity-80 " />
                   </button>
                 </motion.div>

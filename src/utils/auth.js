@@ -18,4 +18,4 @@ export const authProviders = {
   ],
 };
 
-export const getAuthSessions = () => getServerSession(authProviders);
+export const getAuthSession = () => getServerSession(authProviders);
