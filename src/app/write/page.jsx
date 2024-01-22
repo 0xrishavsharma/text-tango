@@ -29,7 +29,11 @@ const WritePage = () => {
   const [value, setValue] = useState("");
   const [file, setFile] = useState(null);
   const [fileUpload, setFileUpload] = useState("");
-  const [media, setMedia] = useState("");
+  const [fileUploadProgress, setFileUploadProgress] = useState(0);
+  const [media, setMedia] = useState(
+    localStorage.getItem("file") || "https://via.placeholder.com/600x400",
+  );
+  console.log("media", media);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
@@ -46,6 +50,7 @@ const WritePage = () => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log("Upload is " + progress + "% done");
+          setFileUploadProgress(progress);
           switch (snapshot.state) {
             case "paused":
               console.log("Upload is paused");
@@ -85,7 +90,7 @@ const WritePage = () => {
   }
 
   const editorVariants = {
-    open: { opacity: 1, x: 0 },
+    open: { opacity: 0, x: 10 },
     closed: { opacity: 0, x: "-200%" },
   };
 
@@ -138,7 +143,7 @@ const WritePage = () => {
               {/* <div className="h-4 w-4 animate-bounce rounded-full bg-themeRedColor"></div> */}
               <PiCircleNotch className="animate-spin stroke-[1.2rem] text-green-400" />
               <p className="duration-[1s] animate-pulse text-green-400 ">
-                Uploading file...
+                Uploading file, {Math.round(fileUploadProgress)}% done...
               </p>
             </div>
           ) : fileUpload === "paused" ? (
@@ -149,14 +154,16 @@ const WritePage = () => {
               </p>
             </div>
           ) : (
-            fileUpload === null &&
-            file && (
-              <div className="relative flex h-[500px] w-full bg-cover">
+            // fileUpload === null &&
+            media && (
+              <div className="relative flex h-[500px] w-full bg-contain">
                 <Image
-                  src={URL.createObjectURL(file)}
+                  src={media}
                   alt=""
-                  layout="fill"
-                  objectFit="cover"
+                  className="max-w-[100%]"
+                  width={0}
+                  height={0}
+                  style={{ height: "100%", width: "auto" }}
                 />
               </div>
             )
@@ -181,8 +188,8 @@ const WritePage = () => {
                 <motion.div
                   className="w-100% absolute left-16 z-[999] flex h-max gap-6 bg-bg "
                   // initial={{ opacity: 0, x: "-200%" }}
-                  exit={{ opacity: 0, x: "0" }}
-                  animate={{ x: 10 }}
+                  exit={{ opacity: 0, x: 0 }}
+                  animate={{ opacity: [0, 1], x: 10 }}
                   variants={editorVariants}
                   transition={{ ease: "easeInOut", duration: 0.5 }}
                 >
