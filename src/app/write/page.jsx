@@ -33,6 +33,7 @@ const WritePage = () => {
   const [media, setMedia] = useState(
     localStorage.getItem("file") || "https://via.placeholder.com/600x400",
   );
+  const [category, setCategory] = useState("");
   console.log("media", media);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
@@ -111,6 +112,7 @@ const WritePage = () => {
           content: value,
           img: media,
           slug: slugify(title),
+          categorySlug: category,
         }),
         headers: {
           "Content-Type": "application/json",
@@ -136,7 +138,10 @@ const WritePage = () => {
             type="text"
             placeholder="Title"
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e) => {
+              setTitle(e.target.value),
+                localStorage.setItem("blogtitle", e.target.value);
+            }}
           />
           {fileUpload === "running" ? (
             <div className="flex items-center gap-2 text-xl">
@@ -164,6 +169,8 @@ const WritePage = () => {
                   width={0}
                   height={0}
                   style={{ height: "100%", width: "auto" }}
+                  unoptimized={true}
+                  sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 300px"
                 />
               </div>
             )
@@ -224,9 +231,37 @@ const WritePage = () => {
               className="w-full "
               theme="bubble"
               value={value}
-              onChange={setValue}
+              onChange={(e) => {
+                setValue();
+                localStorage.setItem(
+                  "blogcontent",
+                  JSON.stringify(e.target.value),
+                );
+              }}
               placeholder="Let's write something..."
             />
+          </div>
+          <div className="flex flex-col">
+            <label
+              htmlFor="blogCategory"
+              className="mb-2 text-lg font-bold text-gray-900"
+            >
+              Category
+            </label>
+            <select
+              name="blogCategory"
+              id="blogCategory"
+              className="h-10 max-w-max rounded-lg border-[1px] border-themeRedColor bg-white/10 px-5 pr-16 text-sm font-semibold backdrop:blur-md focus:outline-none "
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            >
+              <option value="">Select a category</option>
+              <option value="technology">Travel</option>
+              <option value="business">Food</option>
+              <option value="entertainment">Fashion</option>
+              <option value="health">Style</option>
+              <option value="science">Coding</option>
+            </select>
           </div>
         </div>
       </div>
