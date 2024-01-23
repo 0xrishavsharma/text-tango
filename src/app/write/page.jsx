@@ -26,17 +26,17 @@ const storage = getStorage(app);
 
 const WritePage = () => {
   const [isOpen, setIsOpen] = useState();
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(localStorage.getItem("blogcontent") || "");
   const [file, setFile] = useState(null);
   const [fileUpload, setFileUpload] = useState("");
   const [fileUploadProgress, setFileUploadProgress] = useState(0);
+  const [title, setTitle] = useState(localStorage.getItem("blogtitle") || "");
   const [media, setMedia] = useState(
     localStorage.getItem("file") || "https://via.placeholder.com/600x400",
   );
-  const [category, setCategory] = useState("");
-  console.log("media", media);
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
+  const [category, setCategory] = useState(
+    localStorage.getItem("category") || "",
+  );
 
   useEffect(() => {
     const upload = () => {
@@ -119,6 +119,12 @@ const WritePage = () => {
         },
       });
       console.log("res", res);
+      if (res.ok) {
+        localStorage.removeItem("blogtitle");
+        localStorage.removeItem("blogcontent");
+        localStorage.removeItem("blogcategory");
+        localStorage.removeItem("file");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -127,6 +133,22 @@ const WritePage = () => {
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
     setFile(file);
+  };
+
+  // Update localStorage in the state update functions
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+    localStorage.setItem("blogtitle", e.target.value);
+  };
+
+  const handleValueChange = (value) => {
+    setValue(value);
+    localStorage.setItem("blogcontent", value);
+  };
+
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value);
+    localStorage.setItem("blogcategory", e.target.value);
   };
 
   return (
@@ -139,8 +161,7 @@ const WritePage = () => {
             placeholder="Title"
             value={title}
             onChange={(e) => {
-              setTitle(e.target.value),
-                localStorage.setItem("blogtitle", e.target.value);
+              handleTitleChange(e);
             }}
           />
           {fileUpload === "running" ? (
@@ -232,11 +253,7 @@ const WritePage = () => {
               theme="bubble"
               value={value}
               onChange={(e) => {
-                setValue();
-                localStorage.setItem(
-                  "blogcontent",
-                  JSON.stringify(e.target.value),
-                );
+                handleValueChange(e);
               }}
               placeholder="Let's write something..."
             />
@@ -253,7 +270,9 @@ const WritePage = () => {
               id="blogCategory"
               className="h-10 max-w-max rounded-lg border-[1px] border-themeRedColor bg-white/10 px-5 pr-16 text-sm font-semibold backdrop:blur-md focus:outline-none "
               value={category}
-              onChange={(e) => setCategory(e.target.value)}
+              onChange={(e) => {
+                handleCategoryChange(e);
+              }}
             >
               <option value="">Select a category</option>
               <option value="technology">Travel</option>

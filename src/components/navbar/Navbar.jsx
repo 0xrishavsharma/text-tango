@@ -10,6 +10,8 @@ import AuthLinks from "../authLinks/AuthLinks";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { AiOutlineClose } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa6";
+import { FaXTwitter } from "react-icons/fa6";
 
 import { cn } from "@/utils/utils";
 const Navbar = () => {
@@ -23,26 +25,27 @@ const Navbar = () => {
         )}
       >
         <div className={cn(styles.social, "hidden flex-1 gap-3 lg:flex")}>
-          <Image
-            src="/facebook.png"
-            alt="twitter logo"
-            width={24}
-            height={24}
-          />
-          <Image
-            src="/instagram.png"
-            alt="instagram logo"
-            width={24}
-            height={24}
-          />
+          <Link
+            href="https://github.com/0xrishavsharma"
+            target="_blank"
+            className="rounded-full bg-textColor p-2"
+          >
+            <FaGithub className="text-xl text-bg" />
+          </Link>
           <Link
             href="https://linkedin.com/in/0xrishavsharma"
             target="_blank"
-            className="h-6 w-6 bg-blue-600"
+            className="rounded-full bg-blue-600 p-2"
           >
-            <FaLinkedinIn className="p-4 text-2xl  text-textColor" />
+            <FaLinkedinIn className="text-xl text-white" />
           </Link>
-          <Image src="/youtube.png" alt="youtube logo" width={24} height={24} />
+          <Link
+            href="https://twitter.com/0xrishavsharma"
+            target="_blank"
+            className="rounded-full border-[1px] border-white bg-black p-2"
+          >
+            <FaXTwitter className="text-xl text-white" />
+          </Link>
         </div>
         <Link
           href="/"
