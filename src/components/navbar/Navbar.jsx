@@ -5,8 +5,12 @@ import Image from "next/image";
 import Link from "next/link";
 import ThemeToggle from "../themeToggle/ThemeToggle";
 import AuthLinks from "../authLinks/AuthLinks";
+
+// Icons
 import { RxHamburgerMenu } from "react-icons/rx";
 import { AiOutlineClose } from "react-icons/ai";
+import { FaLinkedinIn } from "react-icons/fa";
+
 import { cn } from "@/utils/utils";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -31,7 +35,13 @@ const Navbar = () => {
             width={24}
             height={24}
           />
-          <Image src="/tiktok.png" alt="linkedin logo" width={24} height={24} />
+          <Link
+            href="https://linkedin.com/in/0xrishavsharma"
+            target="_blank"
+            className="h-6 w-6 bg-blue-600"
+          >
+            <FaLinkedinIn className="p-4 text-2xl  text-textColor" />
+          </Link>
           <Image src="/youtube.png" alt="youtube logo" width={24} height={24} />
         </div>
         <Link

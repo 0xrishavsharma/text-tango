@@ -261,6 +261,7 @@ const WritePage = () => {
               <option value="entertainment">Fashion</option>
               <option value="health">Style</option>
               <option value="science">Coding</option>
+              <option value="science">Culture</option>
             </select>
           </div>
         </div>
