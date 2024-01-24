@@ -2,6 +2,7 @@ import { getAuthSession } from "@/utils/auth";
 import prisma from "@/utils/connect";
 import { NextResponse } from "next/server";
 
+// GET REQUESTED NUMBER OF POSTS
 export const GET = async (req) => {
   const { searchParams } = new URL(req.url);
 

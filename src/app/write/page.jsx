@@ -166,7 +166,7 @@ const WritePage = () => {
             <div className="flex items-center gap-2 text-xl">
               {/* <div className="h-4 w-4 animate-bounce rounded-full bg-themeRedColor"></div> */}
               <PiCircleNotch className="animate-spin stroke-[1.2rem] text-green-400" />
-              <p className="duration-[1s] animate-pulse text-green-400 ">
+              <p className="animate-pulse text-green-400 duration-1000 ">
                 Uploading file, {Math.round(fileUploadProgress)}% done...
               </p>
             </div>

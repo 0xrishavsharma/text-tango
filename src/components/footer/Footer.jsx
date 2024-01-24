@@ -61,13 +61,13 @@ const Footer = () => {
             Home
           </Link>
           <Link className="text-sm lg:text-base" href={"/"}>
-            Blog
-          </Link>
-          <Link className="text-sm lg:text-base" href={"/"}>
             About
           </Link>
           <Link className="text-sm lg:text-base" href={"/"}>
             Contact
+          </Link>
+          <Link className="text-sm lg:text-base" href={"/"}>
+            Write
           </Link>
         </div>
         <div className="flex flex-col gap-3">

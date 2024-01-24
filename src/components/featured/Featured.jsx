@@ -1,11 +1,21 @@
 import React from "react";
-import styles from "./featured.module.css";
 import Image from "next/image";
 import Link from "next/link";
-import useFetch from "@/utils/lib/apiRequest";
+import { targetUrl } from "@/utils/utils";
+import DOMPurify from "isomorphic-dompurify";
 
-const Featured = ({ params }) => {
-  // const post = useFetch(`posts/${params.slug}`);
+const Featured = async ({ params }) => {
+  const getFeaturedPost = async () => {
+    const res = await fetch(`${targetUrl}/api/post/featured`, {
+      cache: "no-cache",
+    });
+    const post = await res.json();
+    return post;
+  };
+  const post = await getFeaturedPost();
+  const safePostContent = DOMPurify.sanitize(post?.content);
+
+  console.log("Featured Post", post);
   return (
     <div className="mt-8">
       <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl">
@@ -27,13 +37,14 @@ const Featured = ({ params }) => {
             Lorem ipsum dolor sit amet consectetur, adipisicing elit
           </h1>
           <p className="text-base font-light text-[var(--softTextColor)] xl:text-lg">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo
-            minus veritatis qui tempore perspiciatis, cumque saepe sint officiis
-            aliquid pariatur. Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. Odit, aspernatur!
+            <div
+              dangerouslySetInnerHTML={{
+                __html: `${safePostContent.substring(0, 200)}...
+ `,
+              }}
+            />
           </p>
           <Link
-            // href={`/posts/${post.slug}`}
             href="/"
             className="w-max rounded bg-[var(--textColor)] px-3 py-2 text-sm text-[var(--bg)] lg:text-base xl:text-lg"
           >

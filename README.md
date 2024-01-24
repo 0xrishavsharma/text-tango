@@ -10,8 +10,8 @@ This is a blog website built using Next.js with its SSR and SSG capabilities. It
 
 ## Installation Instructions
 
-1. Clone the repository to your local machine using `git clone https://github.com/0xrishavsharma/RishavSharmaBlog`.
-2. Navigate to the project directory using `cd RishavSharmaBlog`.
+1. Clone the repository to your local machine using `git clone https://github.com/0xrishavsharma/text-tango`.
+2. Navigate to the project directory using `cd text-tango`.
 3. Install the project dependencies using `yarn or yarn install`.
 4. Start the development server using `yarn dev`.
 
@@ -55,7 +55,7 @@ We welcome contributions from everyone. If you're interested in contributing:
 For more information or for reporting issues, feel free to create a pull request. You can also reach out to me through the following platforms:
 
 - LinkedIn: [Rishav Sharma](https://www.linkedin.com/in/0xrishavsharma/)
-- Twitter: [@0xrishavsharma](https://twitter.com/Y0xrishavsharma)
+- Twitter: [@0xrishavsharma](https://twitter.com/0xrishavsharma)
 
 ## Acknowledgements
 

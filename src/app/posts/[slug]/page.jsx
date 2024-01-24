@@ -8,6 +8,8 @@ import DOMPurify from "isomorphic-dompurify";
 import useFetch from "@/utils/lib/apiRequest";
 import { FaComment } from "react-icons/fa";
 import { cn } from "@/utils/utils";
+import { categoryColors } from "@/utils/utils";
+import { getDate } from "@/utils/utils";
 
 const SinglePage = async ({ params }) => {
   const { slug } = params;
@@ -19,27 +21,23 @@ const SinglePage = async ({ params }) => {
       <div className="flex flex-col items-start justify-between gap-12">
         <div className="flex flex-1 flex-col">
           <div className="mb-3 flex flex-col gap-3 text-softTextColor">
-            <p>
-              {post?.date || "12/12/2021"} - {post?.readTime || "5"} min read
-            </p>
-            <div className="flex gap-3">
+            <div className="flex items-center gap-3">
               <p
                 className={cn(
-                  post?.categorySlug === "fashion" && "bg-pink-500",
-                  post?.categorySlug === "food" && "bg-blue-500",
-                  post?.categorySlug === "coding" && "bg-green-500",
-                  post?.categorySlug === "culture" && "bg-red-500",
-                  post?.categorySlug === "style" && "bg-yellow-500",
-                  post?.categorySlug === "travel" && "bg-purple-500",
+                  post?.categorySlug === "fashion" && `${categoryColors[0]}`,
+                  post?.categorySlug === "food" && `${categoryColors[1]}`,
+                  post?.categorySlug === "coding" && `${categoryColors[2]}`,
+                  post?.categorySlug === "culture" && `${categoryColors[3]}`,
+                  post?.categorySlug === "style" && `${categoryColors[4]}`,
+                  post?.categorySlug === "travel" && `${categoryColors[5]}`,
+                  "rounded-full px-2 py-1 capitalize text-textColor",
                 )}
               >
                 {post?.categorySlug}
               </p>
-              <p>
-                {post?.views || "0"} views -
-                <FaComment className="ml-1 mr-2 inline-block" />
-                {post?.comments?.length || "0"}{" "}
-              </p>
+              <p>{post?.readTime || "5"} min read </p>
+              <p> | </p>
+              <p className="flex items-center">{post?.views || "0"} views</p>
             </div>
           </div>
 
@@ -47,7 +45,7 @@ const SinglePage = async ({ params }) => {
             {post?.title ||
               "Lorem ipsum dolor sit ame. voluptatum place at atque autem perferendis?"}
           </h1>
-          <UserCard post={post} />
+          <UserCard data={post} />
         </div>
         {post?.img && (
           <div className="relative hidden h-96 w-full max-w-[500px]  lg:block">
@@ -60,22 +58,21 @@ const SinglePage = async ({ params }) => {
           </div>
         )}
       </div>
-      {/* <div className="flex max-w-max gap-12"> */}
-      <div className="flex gap-12">
+      <div className="flex gap-16">
         <div className="mt-12 flex-[5]">
           <div
-            className="flex flex-col"
+            className="text-normal flex flex-col lg:text-lg xl:text-xl"
             dangerouslySetInnerHTML={{ __html: sanitizedPostHtml }}
           />
-          <div>
-            <CommentSection
-              content=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum
-            adipisci aperiam voluptates et."
-              postSlug={slug}
-            />
+          <div className="flex gap-16">
+            <div className="flex-[3]">
+              <CommentSection postSlug={slug} />
+            </div>
+            <div className="flex-1">
+              <Menu />
+            </div>
           </div>
         </div>
-        <Menu />
       </div>
     </div>
   );
