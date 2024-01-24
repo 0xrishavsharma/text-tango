@@ -5,8 +5,8 @@ import Navbar from "@/components/navbar/Navbar.jsx";
 import { ThemeContext, ThemeContextProvider } from "@/context/ThemeContext";
 import ThemeProvider from "@/providers/ThemeProvider";
 import AuthProvider from "@/providers/AuthProvider";
-import ReactQueryClientProvider from "@/utils/ReactQuery/ReactQueryClientProvider";
 import Template from "./template";
+import ReactQueryClientProvider from "@/utils/ReactQuery/ReactQueryClientProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
