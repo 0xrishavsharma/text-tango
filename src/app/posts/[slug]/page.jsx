@@ -7,6 +7,7 @@ import React from "react";
 import DOMPurify from "isomorphic-dompurify";
 import useFetch from "@/utils/lib/apiRequest";
 import { FaComment } from "react-icons/fa";
+import { cn } from "@/utils/utils";
 
 const SinglePage = async ({ params }) => {
   const { slug } = params;
@@ -15,32 +16,41 @@ const SinglePage = async ({ params }) => {
   const sanitizedPostHtml = DOMPurify.sanitize(post?.content);
   return (
     <div className="py-10">
-      <div className="flex items-center justify-between gap-12">
+      <div className="flex flex-col items-start justify-between gap-12">
         <div className="flex flex-1 flex-col">
-          <p>
-            {post?.author?.name || "Rishav Sharma"} -{" "}
-            {post?.author?.designation || "Full Stack Developer"}
-          </p>
-          <p>
-            {post?.date || "12/12/2021"} - {post?.readTime || "5"} min read
-          </p>
-          <p>
-            {post?.category || "Technology"} - {post?.tags || "Technology"}
-          </p>
-          <p>
-            {post?.views || "0"} views -
-            <FaComment className="ml-1 mr-2 inline-block" />
-            {post?.comments?.length || "0"}{" "}
-          </p>
+          <div className="mb-3 flex flex-col gap-3 text-softTextColor">
+            <p>
+              {post?.date || "12/12/2021"} - {post?.readTime || "5"} min read
+            </p>
+            <div className="flex gap-3">
+              <p
+                className={cn(
+                  post?.categorySlug === "fashion" && "bg-pink-500",
+                  post?.categorySlug === "food" && "bg-blue-500",
+                  post?.categorySlug === "coding" && "bg-green-500",
+                  post?.categorySlug === "culture" && "bg-red-500",
+                  post?.categorySlug === "style" && "bg-yellow-500",
+                  post?.categorySlug === "travel" && "bg-purple-500",
+                )}
+              >
+                {post?.categorySlug}
+              </p>
+              <p>
+                {post?.views || "0"} views -
+                <FaComment className="ml-1 mr-2 inline-block" />
+                {post?.comments?.length || "0"}{" "}
+              </p>
+            </div>
+          </div>
 
-          <h1 className="mb-12 text-4xl font-semibold xl:text-5xl 2xl:text-6xl">
+          <h1 className="mb-12 text-2xl font-semibold xl:text-4xl 2xl:text-5xl">
             {post?.title ||
               "Lorem ipsum dolor sit ame. voluptatum place at atque autem perferendis?"}
           </h1>
           <UserCard post={post} />
         </div>
         {post?.img && (
-          <div className="relative hidden h-96 flex-1 lg:block">
+          <div className="relative hidden h-96 w-full max-w-[500px]  lg:block">
             <Image
               src={post?.img || "/p1.jpeg"}
               className="rounded-sm object-cover"
