@@ -9,10 +9,8 @@ const Featured = ({ params }) => {
   return (
     <div className="mt-8">
       <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl">
-        <span className="font-bold">Hey, Rishav Sharma here! </span>
-        <span className="font-thin">
-          Dive into my world and pickup useful nuggets.
-        </span>
+        <span className="font-bold">Welcome to Text Tango! </span>
+        <span className="font-thin">Your Dance with Words Begins Here </span>
       </h1>
       <div className="space-between mt-12 flex flex-col gap-8 ms:flex-row">
         {/* <div className='flex gap-8 mt-12 space-between'> */}

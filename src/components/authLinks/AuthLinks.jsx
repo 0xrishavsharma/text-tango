@@ -41,7 +41,7 @@ const AuthLinks = () => {
           <span
             className={cn(
               styles.link,
-              "flex w-fit cursor-pointer select-none items-center justify-center gap-2 rounded-lg sm:relative sm:border-[0.1px] sm:border-white/30 sm:bg-white/10 sm:px-3 sm:py-2",
+              "flex w-fit cursor-pointer select-none items-center justify-center gap-2 rounded-lg border-black bg-black/5 dark:border-white/30 dark:bg-white/10 sm:relative sm:border-[0.1px] sm:px-3 sm:py-2",
             )}
             onClick={() => setSettingsOpen(!settingsOpen)}
           >
@@ -60,9 +60,9 @@ const AuthLinks = () => {
             {settingsOpen && (
               <div className="absolute left-0 right-0 top-14 z-[9999] m-auto max-h-max w-[90%] items-center justify-center rounded-lg border-[0.1px] border-white/70  bg-black/10 text-white backdrop-blur-sm sm:w-full ">
                 <div className="relative flex w-full flex-col items-center gap-8 rounded-lg bg-white/30 px-6 py-5 text-white backdrop:blur-xl">
-                  <Link className="" href="/settings">
+                  {/* <Link className="" href="/settings">
                     Settings
-                  </Link>
+                  </Link> */}
                   <Link className="" href="" onClick={signOut}>
                     Logout
                   </Link>

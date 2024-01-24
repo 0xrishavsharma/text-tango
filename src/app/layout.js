@@ -11,7 +11,7 @@ import Template from "./template";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Rishav Sharma Blog",
+  title: "Text Tango",
   description: "Learning and Sharing",
 };
 

@@ -28,21 +28,21 @@ const Navbar = () => {
           <Link
             href="https://github.com/0xrishavsharma"
             target="_blank"
-            className="rounded-full bg-textColor p-2"
+            className="h-9 w-9 rounded-full bg-textColor p-2"
           >
             <FaGithub className="text-xl text-bg" />
           </Link>
           <Link
             href="https://linkedin.com/in/0xrishavsharma"
             target="_blank"
-            className="rounded-full bg-blue-600 p-2"
+            className="h-9 w-9 rounded-full bg-blue-600 p-2"
           >
             <FaLinkedinIn className="text-xl text-white" />
           </Link>
           <Link
             href="https://twitter.com/0xrishavsharma"
             target="_blank"
-            className="rounded-full border-[1px] border-white bg-black p-2"
+            className="h-9 w-9 rounded-full border-[1px] border-white bg-black p-2"
           >
             <FaXTwitter className="text-xl text-white" />
           </Link>
@@ -51,10 +51,16 @@ const Navbar = () => {
           href="/"
           className={cn(
             styles.logo,
-            "text-left font-bold xxs:text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-center",
+            "flex items-center gap-3 text-left font-bold xxs:text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-center",
           )}
         >
-          Rishav Sharma
+          <Image
+            src="/texttango.jpeg"
+            alt="Text Tango Logo"
+            width={70}
+            height={70}
+            className="rounded-full"
+          />
         </Link>
         <div
           className={cn(

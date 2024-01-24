@@ -31,11 +31,9 @@ const WritePage = () => {
   const [fileUpload, setFileUpload] = useState("");
   const [fileUploadProgress, setFileUploadProgress] = useState(0);
   const [title, setTitle] = useState(localStorage.getItem("blogtitle") || "");
-  const [media, setMedia] = useState(
-    localStorage.getItem("file") || "https://via.placeholder.com/600x400",
-  );
+  const [media, setMedia] = useState(localStorage.getItem("file") || null);
   const [category, setCategory] = useState(
-    localStorage.getItem("category") || "",
+    localStorage.getItem("blogcategory") || "",
   );
 
   useEffect(() => {
@@ -180,7 +178,6 @@ const WritePage = () => {
               </p>
             </div>
           ) : (
-            // fileUpload === null &&
             media && (
               <div className="relative flex h-[500px] w-full bg-contain">
                 <Image
@@ -196,13 +193,14 @@ const WritePage = () => {
               </div>
             )
           )}
-          <div className="relative flex items-center gap-8">
+
+          {/* Add file */}
+          <div className="relative flex flex-col items-start gap-8">
             <button
               className={cn(
                 isOpen
                   ? "rotate-45 border-softTextColor"
                   : "border-themeRedColor",
-                // "border-softTextColor",
                 "flex h-10 w-10 items-center justify-center rounded-full border-[1.5px] transition-all duration-300",
               )}
               onClick={() => setIsOpen(!isOpen)}
@@ -214,8 +212,7 @@ const WritePage = () => {
             <AnimatePresence>
               {isOpen && (
                 <motion.div
-                  className="w-100% absolute left-16 z-[999] flex h-max gap-6 bg-bg "
-                  // initial={{ opacity: 0, x: "-200%" }}
+                  className="w-100% absolute left-16 flex h-max gap-6 bg-bg "
                   exit={{ opacity: 0, x: 0 }}
                   animate={{ opacity: [0, 1], x: 10 }}
                   variants={editorVariants}
@@ -229,10 +226,7 @@ const WritePage = () => {
                     }}
                     className="hidden"
                   />
-                  <button
-                    className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border-[1.5px] border-themeRedColor"
-                    // onClick={() => setIsOpen(!isOpen)}
-                  >
+                  <button className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border-[1.5px] border-themeRedColor">
                     <label htmlFor="imageUpload" className="cursor-pointer">
                       <motion.div>
                         <ImImage className="h-4 w-4 stroke-[0.1] text-themeRedColor opacity-80 " />
@@ -249,7 +243,7 @@ const WritePage = () => {
               )}
             </AnimatePresence>
             <ReactQuill
-              className="w-full "
+              className="w-full p-0 "
               theme="bubble"
               value={value}
               onChange={(e) => {
@@ -258,6 +252,8 @@ const WritePage = () => {
               placeholder="Let's write something..."
             />
           </div>
+
+          {/* Category */}
           <div className="flex flex-col">
             <label
               htmlFor="blogCategory"
@@ -275,22 +271,26 @@ const WritePage = () => {
               }}
             >
               <option value="">Select a category</option>
-              <option value="technology">Travel</option>
-              <option value="business">Food</option>
-              <option value="entertainment">Fashion</option>
-              <option value="health">Style</option>
-              <option value="science">Coding</option>
-              <option value="science">Culture</option>
+              <option value="travel">Travel</option>
+              <option value="food">Food</option>
+              <option value="fashion">Fashion</option>
+              <option value="style">Style</option>
+              <option value="coding">Coding</option>
+              <option value="culture">Culture</option>
             </select>
           </div>
         </div>
       </div>
       <div className="publish-button-wrapper mt-8 flex max-w-[1336px] items-start justify-start">
         <button
-          className="publish-button rounded-full border-none bg-themeRedColor px-5 py-2 text-white"
+          className={cn(
+            "publish-button rounded-full border-none bg-themeRedColor px-5 py-2 text-white",
+            fileUpload === "running" && "cursor-not-allowed bg-gray-300",
+          )}
           onClick={handleSubmit}
+          disabled={fileUpload === "running"}
         >
-          Publish
+          {fileUpload === "running" ? "Uploading..." : "Publish"}
         </button>
       </div>
     </div>

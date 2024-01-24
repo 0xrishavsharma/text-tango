@@ -2,44 +2,56 @@ import React from "react";
 import styles from "./footer.module.css";
 import Link from "next/link";
 import Image from "next/image";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { cn } from "@/utils/utils";
 
 const Footer = () => {
   return (
-    <div className="mt-12 flex flex-col justify-between gap-10 py-5 text-[var(--softTextColor)] md:flex-row lg:items-center">
+    <div className="mt-12 flex flex-col justify-between gap-10 py-5 text-[var(--textColor)] md:flex-row lg:items-center">
       <div className="flex flex-1 flex-col gap-4">
         <div className="flex items-center gap-4">
           <div className="w-max rounded-full border-[2px] border-gray-200">
             <Image
               className="rounded-full"
-              src={"/rishavsharma.png"}
+              src={"/texttango.jpeg"}
               alt=""
               width={40}
               height={40}
             />
           </div>
-          <h1 className="text-xl font-bold md:text-2xl">Rishav Sharma</h1>
+          <h1 className="text-xl font-extrabold md:text-2xl">Text Tango</h1>
         </div>
         <span className="text-sm font-light leading-[1.1] text-[var(--softTextColor)] xl:text-base">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
-          at quidem recusandae consequuntur iure. In soluta reprehenderit facere
-          illo rem suscipit cum numquam, tempore doloremque similique eius ut
-          exercitationem unde.
+          &quot;Text Tango&quot; is a dynamic blogging platform designed to
+          inspire creativity and foster a community of writers. With its focus
+          on simplicity and user experience. Whether you&apos;re a seasoned
+          writer or just starting your journey, &quot;Text Tango&quot; is the
+          perfect partner to help you express your thoughts and ideas to the
+          world.
         </span>
-        <div className="flex gap-3">
-          <Image
-            src="/facebook.png"
-            alt="twitter logo"
-            width={18}
-            height={18}
-          />
-          <Image
-            src="/instagram.png"
-            alt="instagram logo"
-            width={18}
-            height={18}
-          />
-          <Image src="/tiktok.png" alt="linkedin logo" width={18} height={18} />
-          <Image src="/youtube.png" alt="youtube logo" width={18} height={18} />
+        <div className={cn(styles.social, "hidden flex-1 gap-3 lg:flex")}>
+          <Link
+            href="https://github.com/0xrishavsharma"
+            target="_blank"
+            className="h-9 w-9 rounded-full bg-textColor p-2"
+          >
+            <FaGithub className="text-xl text-bg" />
+          </Link>
+          <Link
+            href="https://linkedin.com/in/0xrishavsharma"
+            target="_blank"
+            className="h-9 w-9 rounded-full bg-blue-600 p-2"
+          >
+            <FaLinkedinIn className="text-xl text-white" />
+          </Link>
+          <Link
+            href="https://twitter.com/0xrishavsharma"
+            target="_blank"
+            className="h-9 w-9 rounded-full border-[1px] border-white bg-black p-2"
+          >
+            <FaXTwitter className="text-xl text-white" />
+          </Link>
         </div>
       </div>
       <div className="flex flex-1 flex-col justify-between gap-8 py-5 text-[--var(--softTextColor)] sm:flex-row sm:gap-12 lg:justify-end lg:gap-24">
@@ -61,13 +73,19 @@ const Footer = () => {
         <div className="flex flex-col gap-3">
           <span className="font-bold">Tags</span>
           <Link className="text-sm lg:text-base" href={"/"}>
-            Style
+            Fashion
+          </Link>
+          <Link className="text-sm lg:text-base" href={"/"}>
+            Culture
           </Link>
           <Link className="text-sm lg:text-base" href={"/"}>
             Coding
           </Link>
           <Link className="text-sm lg:text-base" href={"/"}>
-            Fashion
+            Style
+          </Link>
+          <Link className="text-sm lg:text-base" href={"/"}>
+            Food
           </Link>
           <Link className="text-sm lg:text-base" href={"/"}>
             Travel
@@ -76,13 +94,13 @@ const Footer = () => {
         <div className="flex flex-col gap-3">
           <span className="font-bold">Social</span>
           <Link className="text-sm lg:text-base" href={"/"}>
+            GitHub
+          </Link>
+          <Link className="text-sm lg:text-base" href={"/"}>
             LinkedIn
           </Link>
           <Link className="text-sm lg:text-base" href={"/"}>
             Twitter
-          </Link>
-          <Link className="text-sm lg:text-base" href={"/"}>
-            Instagram
           </Link>
         </div>
       </div>
