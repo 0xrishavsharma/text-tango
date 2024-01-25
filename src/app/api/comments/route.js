@@ -3,23 +3,23 @@ import prisma from "@/utils/connect";
 import { NextResponse } from "next/server";
 import { NextApiRequest } from "next";
 
-interface Comment {
-  id: number;
-  content: string;
-  postSlug: string;
-  author: Author;
-}
+// interface Comment {
+//   id: number;
+//   content: string;
+//   postSlug: string;
+//   author: Author;
+// }
 
-interface Author {
-  id: number;
-  name: string;
-  email: string;
-}
+// interface Author {
+//   id: number;
+//   name: string;
+//   email: string;
+// }
 
 /**
  * GET ALL COMMENTS OF A PARTICULAR POST
  */
-export const POST = async (req: any): Promise<NextResponse> => {
+export const POST = async (req) => {
   const session = await getAuthSession();
   if (!session)
     return new NextResponse(
@@ -27,7 +27,7 @@ export const POST = async (req: any): Promise<NextResponse> => {
       { status: 401 },
     );
 
-  const body: Comment = await req.json();
+  const body = await req.json();
 
   if (!body.content)
     return new NextResponse(
@@ -36,8 +36,8 @@ export const POST = async (req: any): Promise<NextResponse> => {
     );
 
   try {
-    const comment: Comment = await prisma.comment.create({
-      data: { ...body, authorEmail: (session as any)?.user.email },
+    const comment = await prisma.comment.create({
+      data: { ...body, authorEmail: session?.user.email },
       include: { author: true },
     });
 
