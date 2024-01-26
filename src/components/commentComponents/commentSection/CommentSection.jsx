@@ -14,18 +14,20 @@ import axios from "axios";
 const CommentSection = ({ postSlug }) => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState(null);
-  const [loading, setLoading] = useState(false);
 
   const { data, isLoading, refetch, error, isError } = useQuery({
     queryKey: ["postSlug"],
     queryFn: async () => {
-      const response = await axios.get(`/api/comments?postSlug=${postSlug}`);
+      const response = await axios.get(`/api/comments?postSlug=${postSlug}`, {
+        cache: "no-cache",
+      });
       if (response.status !== 200) {
         throw new Error("Error fetching comments");
       }
       return response.data;
     },
   });
+  console.log("data", data);
 
   // useEffect(() => {
   //   const fetchComments = async () => {
@@ -115,7 +117,7 @@ const CommentSection = ({ postSlug }) => {
       {isLoading
         ? Array.from({ length: 5 }).map((id) => <CommentSkeleton key={id} />)
         : data
-            .sort((a, b) => {
+            ?.sort((a, b) => {
               return new Date(b.createdAt) - new Date(a.createdAt);
             })
             ?.map((comment, _id) => {

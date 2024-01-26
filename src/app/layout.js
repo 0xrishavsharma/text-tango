@@ -6,7 +6,7 @@ import { ThemeContext, ThemeContextProvider } from "@/context/ThemeContext";
 import ThemeProvider from "@/providers/ThemeProvider";
 import AuthProvider from "@/providers/AuthProvider";
 import Template from "./template";
-import ReactQueryClientProvider from "@/utils/ReactQuery/ReactQueryClientProvider";
+import ReactQueryClientProvider from "../utils/ReactQuery/ReactQueryClientProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 

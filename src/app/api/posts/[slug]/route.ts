@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { GetServerSidePropsContext } from "next";
-import { PrismaClient } from "@prisma/client";
-import prisma from "@/utils/connect";
+import prisma from "../../../../utils/connect";
 
 export const GET = async (
   req: any,
