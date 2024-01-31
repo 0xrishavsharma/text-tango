@@ -6,7 +6,7 @@ import { ThemeContext, ThemeContextProvider } from "@/context/ThemeContext";
 import ThemeProvider from "@/providers/ThemeProvider";
 import AuthProvider from "@/providers/AuthProvider";
 import Template from "./template";
-import ReactQueryClientProvider from "../utils/ReactQuery/ReactQueryClientProvider.jsx";
+import ReactQueryClientProvider from "@/utils/ReactQuery/ReactQueryClientProvider.jsx";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
           <AuthProvider>
             <ThemeContextProvider>
               <ThemeProvider>
-                <div className="relative min-h-screen bg-[--bg] text-[--textColor]">
+                <div className="relative min-h-screen bg-bg text-textColor">
                   <Navbar />
                   <div className="wrapper ">
                     <Template>{children}</Template>
