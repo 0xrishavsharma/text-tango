@@ -16,6 +16,7 @@ export const authProviders = {
       clientSecret: process.env.GITHUB_SECRET,
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
 };
 
 export const getAuthSession = () => getServerSession(authProviders);
