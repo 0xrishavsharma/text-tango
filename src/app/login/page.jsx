@@ -18,7 +18,10 @@ const LoginPage = () => {
     <div className="mt-20 flex items-center  justify-center xl:min-h-[calc(100vh_-_380px)]">
       <div className="flex flex-col gap-12 bg-softBg p-6 xs:p-10 sm:p-16 md:p-24 ">
         <div
-          onClick={() => signIn("google")}
+          onClick={(e) => {
+            e.preventDefault();
+            signIn("google");
+          }}
           className="flex cursor-pointer justify-center bg-themeRedColor px-3 py-2 text-center text-sm text-white sm:text-base ms:px-6 ms:py-3 md:font-semibold"
         >
           Sign in with Google
