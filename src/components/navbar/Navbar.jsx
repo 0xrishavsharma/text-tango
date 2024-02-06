@@ -72,12 +72,12 @@ const Navbar = () => {
           <Link className={cn(styles.link, "hidden md:block")} href="/">
             Home
           </Link>
-          <Link className={cn(styles.link, "hidden md:block")} href="/about">
+          {/* <Link className={cn(styles.link, "hidden md:block")} href="/about">
             About
           </Link>
           <Link className={cn(styles.link, "hidden md:block")} href="/contact">
             Contact
-          </Link>
+          </Link> */}
           <AuthLinks />
         </div>
       </div>

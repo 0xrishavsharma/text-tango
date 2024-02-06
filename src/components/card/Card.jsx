@@ -10,7 +10,7 @@ const Card = ({ key, post }) => {
       {post?.img && (
         <div className="relative hidden flex-1 xl:flex">
           <Image
-            className="hidden flex-1 object-cover xl:flex"
+            className="hidden max-h-max flex-1 object-cover xl:flex"
             src={post?.img}
             alt=""
             fill
@@ -29,13 +29,14 @@ const Card = ({ key, post }) => {
           href={`/posts/${post.slug}`}
           className="text-xl font-bold lg:text-2xl xl:text-3xl"
         >
-          {post?.title ||
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit."}
+          {post?.title.length >= 40
+            ? `${post?.title.substring(0, 40)}...`
+            : post?.title}
         </Link>
         <div
           className=" text-[var(--softTextColor)] xl:text-lg"
           dangerouslySetInnerHTML={{
-            __html: `${sanitizedPostHtml.substring(0, 250)}...`,
+            __html: `${sanitizedPostHtml.substring(0, 200)}...`,
           }}
         />
         <Link

@@ -23,12 +23,11 @@ const Footer = () => {
           <h1 className="text-xl font-extrabold md:text-2xl">Text Tango</h1>
         </div>
         <span className="text-sm font-light leading-[1.1] text-[var(--softTextColor)] xl:text-base">
-          &quot;Text Tango&quot; is a dynamic blogging platform designed to
-          inspire creativity and foster a community of writers. With its focus
-          on simplicity and user experience. Whether you&apos;re a seasoned
-          writer or just starting your journey, &quot;Text Tango&quot; is the
-          perfect partner to help you express your thoughts and ideas to the
-          world.
+          Text Tango is a dynamic blogging platform designed to inspire
+          creativity and foster a community of writers. With its focus on
+          simplicity and user experience. Whether you&apos;re a seasoned writer
+          or just starting your journey, Text Tango is the perfect partner to
+          help you express your thoughts and ideas to the world.
         </span>
         <div className={cn(styles.social, "hidden flex-1 gap-3 lg:flex")}>
           <Link
