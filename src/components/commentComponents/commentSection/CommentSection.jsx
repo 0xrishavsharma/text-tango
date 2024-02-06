@@ -3,18 +3,17 @@ import Link from "next/link";
 import Comment from "../comment/Comment";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import { Skeleton } from "../../ui/skeleton";
 import CommentSkeleton from "../commentSkeleton/CommentSkeleton";
-import useFetch from "@/utils/lib/apiRequest";
 import { Button } from "@/components/ui/button";
-import ApiRequest from "@/utils/lib/apiRequest";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+
+// Icons
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const CommentSection = ({ postSlug }) => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState(null);
-
   const { data, isLoading, refetch, error, isError } = useQuery({
     queryKey: ["postSlug"],
     queryFn: async () => {
@@ -64,7 +63,6 @@ const CommentSection = ({ postSlug }) => {
   // console.log("data", data)
 
   const postComment = async (content, path) => {
-    console.log("content", content);
     try {
       const data = await fetch(`/api/comments`, {
         method: "POST",
@@ -79,8 +77,7 @@ const CommentSection = ({ postSlug }) => {
       console.log("New comment", data.body);
       setComments((prev) => [...prev, data]);
       refetch();
-      console.log("comments", comments);
-      console.log("data", data);
+      setNewComment("");
     } catch (error) {
       console.log("error", error);
     }
@@ -92,18 +89,28 @@ const CommentSection = ({ postSlug }) => {
       <h1 className="mb-7 text-2xl font-bold text-softTextColor">Comments</h1>
       <div className="mb-12">
         {status === "authenticated" ? (
-          <div className="flex items-center justify-between gap-5">
+          <div className="flex flex-col items-start justify-between gap-5">
             <textarea
               className="placeholder:text-[family:'Inter'] w-full rounded-sm border-[1.5px] bg-softBg p-5 outline-none focus:border-themeRedColor"
-              placeholder="write a comment..."
+              placeholder="Add a comment..."
               onChange={(e) => setNewComment(e.target.value)}
+              value={newComment}
             />
-            <Button
-              className="h-max cursor-pointer rounded-sm bg-themeRedColor px-8 py-3 font-semibold text-white"
+            <button
+              className="text-whiten h-max cursor-pointer rounded-sm bg-themeRedColor px-6 py-2 font-medium transition-all duration-300 ease-in-out hover:bg-red-600 disabled:cursor-not-allowed disabled:bg-gray-400"
               onClick={(e) => postComment(newComment)}
+              disabled={
+                isLoading || !newComment || newComment.length < 6 || null
+              }
             >
-              Send
-            </Button>
+              {isLoading ? (
+                <span className="">
+                  <AiOutlineLoading3Quarters className="animate-spin text-lg duration-500" />
+                </span>
+              ) : (
+                "Comment"
+              )}
+            </button>
           </div>
         ) : (
           <Link
