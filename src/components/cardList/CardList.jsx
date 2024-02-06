@@ -26,7 +26,7 @@ const CardList = async ({ className, page, category }) => {
   const hasPrevItems = POSTS_PER_PAGE * (page - 1) > 0;
   const hasNextItems = POSTS_PER_PAGE * (page - 1) + POSTS_PER_PAGE < count;
   return (
-    <div className={cn(styles.container, className, "flex-[5]")}>
+    <div className={cn(styles.container, className, "min-h-[800px] flex-[5]")}>
       <div className={cn("")}>
         <h1 className="my-12 text-2xl font-bold xl:text-3xl">Recent Posts</h1>
         <div className="flex flex-col gap-12">

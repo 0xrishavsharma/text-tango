@@ -115,7 +115,7 @@ const CommentSection = ({ postSlug }) => {
         )}
       </div>
       {isLoading
-        ? Array.from({ length: 5 }).map((id) => <CommentSkeleton key={id} />)
+        ? Array.from({ length: 5 }).map((_id) => <CommentSkeleton key={_id} />)
         : data
             ?.sort((a, b) => {
               return new Date(b.createdAt) - new Date(a.createdAt);

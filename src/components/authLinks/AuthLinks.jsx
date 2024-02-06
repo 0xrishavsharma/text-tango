@@ -30,9 +30,14 @@ const AuthLinks = () => {
   return (
     <>
       {status === "unauthenticated" ? (
-        <Link href="/login" className="hidden md:block">
-          Login
-        </Link>
+        <>
+          <Link href="/write" className="">
+            Write
+          </Link>
+          <Link href="/login" className="hidden md:block">
+            Login
+          </Link>
+        </>
       ) : (
         <>
           <Link href="/write" className="">

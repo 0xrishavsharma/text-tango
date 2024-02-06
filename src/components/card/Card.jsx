@@ -10,7 +10,7 @@ const Card = ({ key, post }) => {
       {post?.img && (
         <div className="relative hidden flex-1 xl:flex">
           <Image
-            className="hidden max-h-max flex-1 object-cover xl:flex"
+            className="hidden flex-1 object-cover lg:min-h-[270px] xl:flex"
             src={post?.img}
             alt=""
             fill
