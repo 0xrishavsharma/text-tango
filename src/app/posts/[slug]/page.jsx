@@ -7,15 +7,12 @@ import React from "react";
 import DOMPurify from "isomorphic-dompurify";
 import useFetch from "@/utils/lib/apiRequest";
 import { FaComment } from "react-icons/fa";
-import { cn } from "@/utils/utils";
+import { cn, sanitizedHtml } from "@/utils/utils";
 import { categoryColors } from "@/utils/utils";
-import { getDate } from "@/utils/utils";
 
 const SinglePage = async ({ params }) => {
   const { slug } = params;
   const post = await useFetch(`posts/${slug}`);
-
-  const sanitizedPostHtml = DOMPurify.sanitize(post?.content);
   return (
     <div className="py-10">
       <div className="flex flex-col items-start justify-between gap-12">
@@ -62,7 +59,7 @@ const SinglePage = async ({ params }) => {
         <div className="mt-12 flex-[5]">
           <div
             className="text-normal flex flex-col lg:text-lg xl:text-xl"
-            dangerouslySetInnerHTML={{ __html: sanitizedPostHtml }}
+            dangerouslySetInnerHTML={{ __html: sanitizedHtml(post?.content) }}
           />
           <div className="flex gap-16">
             <div className="flex-[3]">

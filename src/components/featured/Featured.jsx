@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { targetUrl } from "@/utils/utils";
+import { sanitizedHtml, targetUrl } from "@/utils/utils";
 import DOMPurify from "isomorphic-dompurify";
 
 const Featured = async ({ params }) => {
@@ -13,7 +13,6 @@ const Featured = async ({ params }) => {
     return post;
   };
   const post = await getFeaturedPost();
-  const safePostContent = DOMPurify.sanitize(post?.content);
 
   return (
     <div className="mt-8">
@@ -36,7 +35,7 @@ const Featured = async ({ params }) => {
           <p className="text-base font-light text-[var(--softTextColor)] xl:text-lg">
             <div
               dangerouslySetInnerHTML={{
-                __html: `${safePostContent.substring(0, 200)}...
+                __html: `${sanitizedHtml(post?.content).substring(0, 200)}...
  `,
               }}
             />

@@ -2,12 +2,12 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import SmallCard from "../smallCard/SmallCard";
-import { smallCardData } from "@/utils/utils";
+import { selectedCategoryColor, smallCardData } from "@/utils/utils";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 const MenuPosts = ({ type }) => {
-  const firstFourData = smallCardData.slice(0, 4);
+  const firstFourData = smallCardData?.slice(0, 4);
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ["posts"],
@@ -52,7 +52,7 @@ const MenuPosts = ({ type }) => {
                 <Link href={"/"} className="" key={i + 1}>
                   <SmallCard
                     tag={post.categorySlug}
-                    tagColor={post.tagColor}
+                    tagColor={selectedCategoryColor}
                     para={post.content}
                     author={post.author.name}
                     img={post.author.image}
@@ -69,13 +69,13 @@ const MenuPosts = ({ type }) => {
             </p>
           </div>
         )}
-        {firstFourData.map((card, i) => {
+        {firstFourData?.map((card, i) => {
           return (
             <Link href={"/"} className="" key={i + 1}>
               <SmallCard
                 type={type}
                 tag={card.tag}
-                tagColor={card.tagColor}
+                tagColor={selectedCategoryColor(i)}
                 para={card.para}
                 author={card.author}
                 img={card.img}

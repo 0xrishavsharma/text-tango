@@ -1,10 +1,9 @@
+import { sanitizedHtml } from "@/utils/utils";
 import DOMPurify from "isomorphic-dompurify";
 import Image from "next/image";
 import Link from "next/link";
 
 const Card = ({ key, post }) => {
-  const sanitizedPostHtml = DOMPurify.sanitize(post?.content);
-
   return (
     <div className="flex flex-col justify-between gap-12 md:flex-row" key={key}>
       {post?.img && (
@@ -36,7 +35,7 @@ const Card = ({ key, post }) => {
         <div
           className=" text-[var(--softTextColor)] xl:text-lg"
           dangerouslySetInnerHTML={{
-            __html: `${sanitizedPostHtml.substring(0, 200)}...`,
+            __html: `${sanitizedHtml(post?.content).substring(0, 200)}...`,
           }}
         />
         <Link

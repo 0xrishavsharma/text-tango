@@ -2,7 +2,7 @@ import styles from "./categoryList.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/utils/utils.js";
-import { categoryColors } from "@/utils/utils";
+import { categoryColors, selectedCategoryColor } from "@/utils/utils";
 import useFetch from "@/utils/lib/apiRequest";
 
 const CategoryList = async () => {
@@ -15,14 +15,13 @@ const CategoryList = async () => {
       </h1>
       <div className={cn(styles.categories, "gap-8 text-[var(--textColor)]")}>
         {categories?.map((category, index) => {
-          const color = categoryColors[index % categoryColors.length];
           return (
             <Link
               key={category._id}
               href={`/blog?category=${category.title}`}
               className={cn(
                 "flex h-16 w-full items-center justify-center gap-5 rounded-lg px-10 capitalize lg:gap-2 xl:gap-5",
-                color,
+                selectedCategoryColor(index),
               )}
             >
               {category.img && (
