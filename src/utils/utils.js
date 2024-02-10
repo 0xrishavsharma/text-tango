@@ -10,6 +10,15 @@ export const cn = (...inputs) => {
   return twMerge(clsx(inputs));
 };
 
+export const categoryList = [
+  "fashion",
+  "coding",
+  "style",
+  "culture",
+  "food",
+  "travel",
+];
+
 export const categoryColors = [
   "bg-blue-400/50",
   "bg-pink-400/50",

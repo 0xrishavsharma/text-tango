@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import { cn } from "@/utils/utils";
+import { categoryList, cn } from "@/utils/utils";
 
 const Footer = () => {
   return (
@@ -59,46 +59,48 @@ const Footer = () => {
           <Link className="text-sm lg:text-base" href={"/"}>
             Home
           </Link>
-          <Link className="text-sm lg:text-base" href={"/"}>
+          {/* <Link className="text-sm lg:text-base" href={"/"}>
             About
           </Link>
           <Link className="text-sm lg:text-base" href={"/"}>
             Contact
-          </Link>
-          <Link className="text-sm lg:text-base" href={"/"}>
+          </Link> */}
+          <Link className="text-sm lg:text-base" href={"/write"}>
             Write
           </Link>
         </div>
         <div className="flex flex-col gap-3">
           <span className="font-bold">Tags</span>
-          <Link className="text-sm lg:text-base" href={"/"}>
-            Fashion
-          </Link>
-          <Link className="text-sm lg:text-base" href={"/"}>
-            Culture
-          </Link>
-          <Link className="text-sm lg:text-base" href={"/"}>
-            Coding
-          </Link>
-          <Link className="text-sm lg:text-base" href={"/"}>
-            Style
-          </Link>
-          <Link className="text-sm lg:text-base" href={"/"}>
-            Food
-          </Link>
-          <Link className="text-sm lg:text-base" href={"/"}>
-            Travel
-          </Link>
+          {categoryList.map((category, i) => {
+            return (
+              <Link
+                href={`/blog?category=${category}`}
+                className="text-sm capitalize lg:text-base"
+                key={i + 1}
+              >
+                {category}
+              </Link>
+            );
+          })}
         </div>
         <div className="flex flex-col gap-3">
           <span className="font-bold">Social</span>
-          <Link className="text-sm lg:text-base" href={"/"}>
+          <Link
+            href="https://github.com/0xrishavsharma"
+            className="text-sm lg:text-base"
+          >
             GitHub
           </Link>
-          <Link className="text-sm lg:text-base" href={"/"}>
+          <Link
+            href="https://linkedin.com/in/0xrishavsharma"
+            className="text-sm lg:text-base"
+          >
             LinkedIn
           </Link>
-          <Link className="text-sm lg:text-base" href={"/"}>
+          <Link
+            href="https://twitter.com/0xrishavsharma"
+            className="text-sm lg:text-base"
+          >
             Twitter
           </Link>
         </div>

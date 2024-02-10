@@ -34,7 +34,7 @@ const SmallCard = ({ type, tag, para, author, img, date }) => {
         <div
           className="text-sm lg:text-lg"
           dangerouslySetInnerHTML={{
-            __html: `${sanitizedHtml(para).substring(0, 50)}...`,
+            __html: `${sanitizedHtml(para).length > 50 ? sanitizedHtml(para).substring(0, 50) + "..." : sanitizedHtml(para)}`,
           }}
         />
         <div className="flex text-xs lg:text-sm">

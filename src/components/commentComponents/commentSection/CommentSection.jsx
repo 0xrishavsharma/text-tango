@@ -15,7 +15,7 @@ const CommentSection = ({ postSlug }) => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState(null);
   const { data, isLoading, refetch, error, isError } = useQuery({
-    queryKey: ["postSlug"],
+    queryKey: [postSlug],
     queryFn: async () => {
       const response = await axios.get(`/api/comments?postSlug=${postSlug}`, {
         cache: "no-cache",
