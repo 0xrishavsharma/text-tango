@@ -1,20 +1,24 @@
-import { cn, getDate, sanitizedHtml } from "@/utils/utils";
+import {
+  cn,
+  getDate,
+  sanitizedHtml,
+  selectedCategoryColor,
+} from "@/utils/utils";
 import Image from "next/image";
 import React from "react";
 import DOMPurify from "isomorphic-dompurify";
 
-const SmallCard = ({ type, tag, tagColor, para, author, img, date }) => {
-  console.log("All props", type, tag, tagColor, para, author, img, date);
-
+const SmallCard = ({ type, tag, para, author, img, date }) => {
   return (
-    <div className="flex items-center gap-5">
+    <div className="flex items-center gap-3">
       {type === "editors" && (
-        <div className="relative aspect-square flex-[1] rounded-full">
+        <div className="relative aspect-square rounded-full">
           <Image
-            className="h-16 w-16 rounded-full border-[3px] border-gray-200 object-cover"
+            className="rounded-full border-[3px] border-gray-200 object-cover"
             src={img}
             alt=""
-            fill
+            width={52}
+            height={52}
           />
         </div>
       )}
@@ -22,12 +26,12 @@ const SmallCard = ({ type, tag, tagColor, para, author, img, date }) => {
         <span
           className={cn(
             "w-max rounded-3xl px-2 py-[3px] text-xs text-white lg:text-sm xl:text-base",
-            tagColor,
+            selectedCategoryColor(tag),
           )}
         >
           {tag}
         </span>
-        <p
+        <div
           className="text-sm lg:text-lg"
           dangerouslySetInnerHTML={{
             __html: `${sanitizedHtml(para).substring(0, 50)}...`,

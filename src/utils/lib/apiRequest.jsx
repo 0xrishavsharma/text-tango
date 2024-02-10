@@ -19,7 +19,6 @@ const ApiRequest = async (path, method, headers, body) => {
   //     return data;
   //   },
   // });
-  // console.log("🚀 ~ useFetch ~ data:", data)
   // return { data, isLoading, refetch, error, isError };
 
   const response = await fetch(`${targetUrl}/api/${path}`, options);

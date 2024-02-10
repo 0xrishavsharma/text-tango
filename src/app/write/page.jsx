@@ -66,7 +66,6 @@ const WritePage = () => {
         (error) => {},
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            console.log("File available at", downloadURL);
             setMedia(downloadURL);
             localStorage.setItem("file", downloadURL);
             setFileUpload(null);
@@ -74,7 +73,6 @@ const WritePage = () => {
         },
       );
     };
-    console.log("File", file);
     file && upload();
     setFileUpload(null);
   }, [file]);
@@ -116,7 +114,6 @@ const WritePage = () => {
           "Content-Type": "application/json",
         },
       });
-      console.log("res", res);
       if (res.ok) {
         localStorage.removeItem("blogtitle");
         localStorage.removeItem("blogcontent");

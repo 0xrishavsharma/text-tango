@@ -21,7 +21,7 @@ const CategoryList = async () => {
               href={`/blog?category=${category.title}`}
               className={cn(
                 "flex h-16 w-full items-center justify-center gap-5 rounded-lg px-10 capitalize lg:gap-2 xl:gap-5",
-                selectedCategoryColor(index),
+                selectedCategoryColor(category.slug),
               )}
             >
               {category.img && (

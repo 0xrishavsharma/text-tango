@@ -19,8 +19,13 @@ export const categoryColors = [
   "bg-purple-400/50",
 ];
 
-export const selectedCategoryColor = (index) => {
-  return categoryColors[index % categoryColors.length];
+export const selectedCategoryColor = (categorySlug) => {
+  if (categorySlug === "fashion") return categoryColors[0];
+  if (categorySlug === "coding") return categoryColors[1];
+  if (categorySlug === "style") return categoryColors[2];
+  if (categorySlug === "culture") return categoryColors[3];
+  if (categorySlug === "food") return categoryColors[4];
+  if (categorySlug === "travel") return categoryColors[5];
 };
 
 export const getDate = (date) => {

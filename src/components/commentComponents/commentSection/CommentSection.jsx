@@ -26,41 +26,6 @@ const CommentSection = ({ postSlug }) => {
       return response.data;
     },
   });
-  console.log("data", data);
-
-  // useEffect(() => {
-  //   const fetchComments = async () => {
-  //     setLoading(true);
-  //     const res = await new Promise((resolve, reject) => {
-  //       setTimeout(async () => {
-  //         try {
-  //           const response = await fetch(`/api/comments?postSlug=${postSlug}`, {
-  //             cache: "no-cache",
-  //           });
-  //           resolve(response);
-  //         } catch (error) {
-  //           reject(error);
-  //         }
-  //       }, 10);
-  //     });
-  //     if (!res.ok) {
-  //       const error = new Error("Something went wrong");
-  //       console.log("error", error);
-  //       throw error;
-  //     }
-  //     const data = await res.json();
-  //     return data.sort((a, b) => {
-  //       return new Date(b.createdAt) - new Date(a.createdAt);
-  //     });
-  //   };
-  //   fetchComments().then((data) => {
-  //     setComments(data);
-  //     setLoading(false);
-  //   });
-  // }, [postSlug]);
-
-  // const { data } = ApiRequest(`comments?postSlug=${postSlug}`, "GET", null, null);
-  // console.log("data", data)
 
   const postComment = async (content, path) => {
     try {
@@ -74,7 +39,6 @@ const CommentSection = ({ postSlug }) => {
           postSlug,
         }),
       });
-      console.log("New comment", data.body);
       setComments((prev) => [...prev, data]);
       refetch();
       setNewComment("");

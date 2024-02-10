@@ -1,56 +1,51 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SmallCard from "../smallCard/SmallCard";
 import { selectedCategoryColor, smallCardData } from "@/utils/utils";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 const MenuPosts = ({ type }) => {
-  const firstFourData = smallCardData?.slice(0, 4);
-
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["posts"],
+    queryKey: [type],
     queryFn: async () => {
-      console.log("fetching popular posts");
-      const response = await axios.get("/api/popularPosts", {
-        cache: "no-cache",
-      });
-      console.log("response", response);
+      const response = await axios.get(
+        `/api/${type === "editors" ? "writerPicks" : "popularPosts"}`,
+        {
+          cache: "no-cache",
+        },
+      );
       if (response.status !== 200) {
         throw new Error("Error fetching comments");
       }
-      console.log("data", response.data);
       return response.data;
     },
   });
+  useEffect(() => {
+    if (isError) {
+      console.error(isError);
+    }
+  }, [isError]);
+
   return (
     <div>
       <div className="my-12">
-        <h2 className="text-[var(--softTextColor)]">{"What's"} hot</h2>
-        <h1 className="text-2xl font-bold">Most Popular</h1>
+        <h2 className="text-[var(--softTextColor)]">
+          {type === "editors" ? "Chosen by popular authors" : "What's hot"}
+        </h2>
+        <h1 className="text-2xl font-bold">
+          {type === "editors" ? "Writer's choice" : "Most Popular"}
+        </h1>
       </div>
       <div className="flex flex-col gap-8">
-        {/* {
-          // If there is an error fetching the popular posts
-          isError && (
-            <div className="flex items-center justify-center">
-              <p className="text-2xl font-bold text-[var(--softTextColor)]">
-                {"Couldn't"} fetch popular posts
-              </p>
-            </div>
-          )
-        } */}
-        {console.log("data1", data)}
-
         {!isLoading ? (
           <div className="flex flex-col gap-8">
-            {console.log("data2", data)}
             {data?.map((post, i) => {
-              console.log("post", post);
               return (
                 <Link href={"/"} className="" key={i + 1}>
                   <SmallCard
+                    type={type}
                     tag={post.categorySlug}
                     tagColor={selectedCategoryColor}
                     para={post.content}
@@ -69,7 +64,7 @@ const MenuPosts = ({ type }) => {
             </p>
           </div>
         )}
-        {firstFourData?.map((card, i) => {
+        {/* {firstFourData?.map((card, i) => {
           return (
             <Link href={"/"} className="" key={i + 1}>
               <SmallCard
@@ -83,7 +78,7 @@ const MenuPosts = ({ type }) => {
               />
             </Link>
           );
-        })}
+        })} */}
       </div>
     </div>
   );
