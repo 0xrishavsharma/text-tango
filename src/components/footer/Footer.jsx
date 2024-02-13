@@ -22,7 +22,7 @@ const Footer = () => {
           </div>
           <h1 className="text-xl font-extrabold md:text-2xl">Text Tango</h1>
         </div>
-        <span className="text-sm font-light leading-[1.1] text-[var(--softTextColor)] xl:text-base">
+        <span className=" font-light text-[var(--softTextColor)]">
           Text Tango is a dynamic blogging platform designed to inspire
           creativity and foster a community of writers. With its focus on
           simplicity and user experience. Whether you&apos;re a seasoned writer
