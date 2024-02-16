@@ -42,7 +42,6 @@ const MenuPosts = ({ type }) => {
         {!isLoading ? (
           <div className="flex flex-col gap-8">
             {data?.map((post, i) => {
-              console.log("post", post);
               return (
                 <Link href={`/posts/${post.slug}`} className="" key={i + 1}>
                   <SmallCard

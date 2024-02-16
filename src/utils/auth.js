@@ -1,5 +1,6 @@
 import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
+import TwitterProvider from "next-auth/providers/twitter";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import prisma from "./connect";
 import { getServerSession } from "next-auth";
@@ -16,6 +17,12 @@ export const authProviders = {
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
       allowDangerousEmailAccountLinking: true,
+    }),
+    TwitterProvider({
+      clientId: process.env.TWITTER_ID,
+      clientSecret: process.env.TWITTER_SECRET,
+      allowDangerousEmailAccountLinking: true,
+      version: "2.0",
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,

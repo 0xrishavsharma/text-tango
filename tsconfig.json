@@ -19,12 +19,12 @@
     "incremental": true,
     "plugins": [
       {
-        "name": "next",
-      },
+        "name": "next"
+      }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-    },
+      "@/*": ["./src/*"]
+    }
   },
   "include": [
     "next-env.d.ts",
@@ -33,7 +33,7 @@
     ".next/types/**/*.ts",
     "src/utils/connect.ts",
     "src/app/api/auth/[...nextauth]/route.js",
-    "src/app/api/comments/route.js",
+    "src/app/api/comments/route.js"
   ],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules"]
 }

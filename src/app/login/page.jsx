@@ -27,7 +27,7 @@ const LoginPage = () => {
           Sign in with Google
         </div>
         <div
-          className="flex cursor-pointer justify-center bg-black px-3  py-2 text-center text-sm text-white sm:text-base ms:px-6 ms:py-3 md:font-semibold"
+          className="flex cursor-pointer justify-center bg-black px-3 py-2 text-center text-sm text-white sm:text-base ms:px-6 ms:py-3 md:font-semibold"
           onClick={(e) => {
             e.preventDefault();
             signIn("github");
@@ -35,8 +35,14 @@ const LoginPage = () => {
         >
           Sign in with GitHub
         </div>
-        <div className="flex cursor-pointer justify-center bg-blue-500 px-3 py-2 text-center text-sm text-white sm:text-base ms:px-6 ms:py-3 md:font-semibold">
-          Sign in with Facebook
+        <div
+          className="flex cursor-pointer justify-center bg-blue-500 px-3 py-2 text-center text-sm text-white sm:text-base ms:px-6 ms:py-3 md:font-semibold"
+          onClick={(e) => {
+            e.preventDefault();
+            signIn("twitter");
+          }}
+        >
+          Sign in with Twitter
         </div>
       </div>
     </div>
