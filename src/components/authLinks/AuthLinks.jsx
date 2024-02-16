@@ -64,7 +64,7 @@ const AuthLinks = () => {
             </p>
             {settingsOpen && (
               <div className="absolute left-0 right-0 top-14 z-[9999] m-auto max-h-max w-[90%] items-center justify-center rounded-lg border-[0.1px] border-white/70  bg-black/10 text-white backdrop-blur-sm sm:w-full ">
-                <div className="relative flex w-full flex-col items-center gap-8 rounded-lg bg-white/30 px-6 py-5 text-white backdrop:blur-xl">
+                <div className="relative flex w-full flex-col items-center gap-8 rounded-lg bg-white/30 px-6 py-3 text-white backdrop:blur-xl">
                   {/* <Link className="" href="/settings">
                     Settings
                   </Link> */}

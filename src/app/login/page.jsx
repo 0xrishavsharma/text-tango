@@ -35,7 +35,7 @@ const LoginPage = () => {
         >
           Sign in with GitHub
         </div>
-        <div
+        {/* <div
           className="flex cursor-pointer justify-center bg-blue-500 px-3 py-2 text-center text-sm text-white sm:text-base ms:px-6 ms:py-3 md:font-semibold"
           onClick={(e) => {
             e.preventDefault();
@@ -43,7 +43,7 @@ const LoginPage = () => {
           }}
         >
           Sign in with Twitter
-        </div>
+        </div> */}
       </div>
     </div>
   );
